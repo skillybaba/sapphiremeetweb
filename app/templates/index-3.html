@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static %}
+<!-- Site Metas -->
+<title>StyleBarber - Bootstrap 4 Responsive HTML5 Template</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Site Icons -->
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+<link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<!-- Site CSS -->
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!-- ALL VERSION CSS -->
+<link rel="stylesheet" href="{% static 'css/versions.css' %}">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+<!-- boorstrap -->
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+<!-- themify-icon.css -->
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/themify-icons.css' %}">
+<!-- animate.css -->
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.css' %}">
+<!-- owl-carousel -->
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl.carousel.css' %}">
+<!-- video.min.css -->
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/video.min.css' %}">
+<!-- menu style -->
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/menu.css' %}">
+<!-- style -->
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+<!-- responsive.css -->
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+<link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
+<link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+
+
+<!-- NEW EDIT  -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<style>
+	/* Style the header with a grey background and some padding */
+	.header {
+		overflow: hidden;
+		background-color: #fdb813;
+		background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
+		padding: 20px 10px;
+	}
+
+	/* Style the header links */
+	.header a {
+		float: left;
+		color: black;
+		text-align: center;
+		padding: 12px;
+		text-decoration: none;
+		font-size: 18px;
+		line-height: 25px;
+		border-radius: 4px;
+	}
+
+	/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+	.header a.logo {
+		font-size: 25px;
+		font-weight: bold;
+	}
+
+	/* Change the background color on mouse-over */
+	.header a:hover {
+		background-color: #ddd;
+		color: black;
+	}
+
+	/* Style the active/current link*/
+	.header a.active {
+		background-color: dodgerblue;
+		color: white;
+	}
+
+	/* Float the link section to the right */
+	.header-right {
+		float: right;
+	}
+
+	/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+	@media screen and (max-width: 500px) {
+		.header a {
+			float: none;
+			display: block;
+			text-align: left;
+		}
+
+		.header-right {
+			float: none;
+		}
+	}
+</style>
+
+<body class="barber_version">
+
+	<div class="header">
+		<a href="#default" class="logo">CompanyLogo</a>
+		<div class="header-right">
+			<a class="active" href="/index.html">ENTER</a>
+
+			<a href="/SAPPHIRECHATPANNEL/chatsapphirehome.html">Sapphire Web</a>
+
+			<a href="contact/">Contact</a>
+
+			<a href="pricing/">Pricing</a>
+
+		</div>
+	</div>
+
+
+	<div id="home" class="parallax">
+		<div id="full-width" class="owl-carousel owl-theme home-hero">
+			<div class="text-center item slider-01 display-table overlay">
+				<div class="display-table-cell">
+					<div class="big-tagline text-center">
+						<h1>Sapphire Meet</h1>
+						<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum perferendis fugit magnam
+							repellat necessitatibus nam mollitia culpa perspiciatis similique dolorem dolor sint minus
+							illum, consectetur veniam a! Amet, voluptatum eligendi!</P>
+
+						<a href="enter/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn" >Join Meeting</a>
+						<a href="auth/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn" >Host Meeting</a>
+					</div>
+				</div>
+			</div>
+			<div class="text-center item slider-02 display-table overlay">
+				<div class="display-table-cell">
+					<div class="big-tagline text-center">
+						<h1>Sapphire Meet</h1>
+						<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum perferendis fugit magnam
+							repellat necessitatibus nam mollitia culpa perspiciatis similique dolorem dolor sint minus
+							illum, consectetur veniam a! Amet, voluptatum eligendi!</P>
+						<a href="enter/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Join Meeting</a>
+						<a href="auth/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Host Meeting</a>
+					</div>
+				</div>
+			</div>
+			<div class="text-center item slider-03 display-table overlay">
+				<div class="display-table-cell">
+					<div class="big-tagline text-center">
+						<h1>Sapphire Meet</h1>
+						<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum perferendis fugit magnam
+							repellat necessitatibus nam mollitia culpa perspiciatis similique dolorem dolor sint minus
+							illum, consectetur veniam a! Amet, voluptatum eligendi!</P>
+						<a href="enter/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn"> Join Meeting</a>
+						<a href="auth/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn"> Host Meeting</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- end section -->
+
+	<!-- Start of footer section        
+		============================================= -->
+
+	<!-- End of footer section        
+			============================================= -->
+
+
+	
+
+	<!-- <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a> -->
+
+	<!-- ALL JS FILES -->
+	<script src="{% static 'js/all.js' %}"></script>
+	<script src="{% static 'js/responsive-tabs.js' %}"></script>
+	<!-- ALL PLUGINS -->
+	<script src="{% static 'js/custom.js' %}"></script>
+
+
+	</script>
+
+	</script>
+	<!--  Js Library -->
+	<script type="text/javascript" src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script>
+	<!-- Include  for bootstrap -->
+	<script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+	<!-- Include Owl-carousel -->
+	<script type="text/javascript" src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+	<!-- Include OnePagenNav -->
+	<!-- <script type="text/javascript" src="assets/js/OnePagenNav.js"></script> -->
+	<!-- Include jquery.magnific-popup.min.js-->
+	<script type="text/javascript" src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+	<!-- Include script.js-->
+	<script type="text/javascript" src="{% static 'assets/js/script.js' %}"></script>
+
+</body>
+
+</html>

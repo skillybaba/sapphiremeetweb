@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<style>
+    .mar{
+        margin-top: 5%;
+       margin-left: 10%;
+       margin-right: 10%;
+    
+    }
+
+    .mar2
+    {
+        margin-right: 300px;
+    }
+    .mar4
+    {
+        margin-left: 40%;
+        margin-top:1%;
+    }
+   .mar3
+   {
+       margin-top:10%;
+       margin-left: 40%;
+   }
+   .hide{
+       width: 50%;
+       margin-left: 25%;
+       position: relative;
+       display: none;
+   }
+</style>
+<body>
+    <div class="input-group input-group-sm mar">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Enter the Verification Code </span>
+        </div>
+        <input type="text" id = 'verif' class="form-control mar2">
+        
+      </div>
+      <button type="button" id='auth' class="mar4 btn btn-secondary btn-lg">Auth With credentials</button>
+    
+    
+    
+      <Button id="but"  class='mar3 btn btn-primary btn-lg'> 
+       <img src="https://image.freepik.com/free-icon/auricular-phone_318-1028.jpg" alt="" width="40">
+       phone auth
+    </Button>
+    <div>
+        <div class="form-group mar hide" id='val'>
+            <input type="text"  class="form-control" id="formGroupExampleInput" value='+91' placeholder="Enter the Phone number">
+            <button type="button" id = 'next' class="btn btn-success">next</button>
+          </div>
+    </div>
+    <div id='recaptcha-container'>
+        
+    </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+<script>
+     var firebaseConfig = {
+      apiKey: "AIzaSyD459mLh3V-U83_cD2ZgM4herSAq76CAHY",
+      authDomain: "sapphire-meet.firebaseapp.com",
+      databaseURL: "https://sapphire-meet.firebaseio.com",
+      projectId: "sapphire-meet",
+      storageBucket: "sapphire-meet.appspot.com",
+      messagingSenderId: "414973538233",
+      appId: "1:414973538233:web:387f730b004839c2369068",
+      measurementId: "G-7ZBSX6GSDT"
+    };
+    if(sessionStorage.getItem('user')!=null)
+    {
+        var val=sessionStorage.getItem('user');
+        console.log(val);
+        val=val.split('/');
+         location.href='/hostpage/'+val[1];
+    }
+    
+    firebase.initializeApp(firebaseConfig);
+    document.getElementById('auth').onclick= async ()=>{
+        console.log(3);
+        var firestore=firebase.firestore();
+        var doc = firestore.doc('web/0ysJuZ64RshAHyBnbMqc');
+        var docdata= await doc.get();
+        console.log(docdata.data());
+        var key= document.getElementById('verif').value;
+        if(key in docdata.data())
+        {
+            var userdoc = sessionStorage.setItem('user',docdata.data()[key]);
+                      var val= docdata.data()[key];
+                      console.log(key);
+                   console.log(val);
+                   val=val.split('/');
+            location.href='/hostpage/'+val[1];
+
+        }
+        
+
+    } 
+
+     document.getElementById('but').onclick=()=>
+        {
+            if(document.getElementById('val').style.display=='none')
+            document.getElementById('val').style.display='block';
+            else
+            document.getElementById('val').style.display='none';
+            console.log('done');
+       
+        };
+    var kan = function()
+    {
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    "recaptcha-container",
+    {
+        size: "invisible",
+    callback: function(response) {
+      
+    }
+    }
+    
+);
+
+    
+    
+ var phoneNumber = document.getElementById('formGroupExampleInput').value;
+    console.log(phoneNumber);
+var appVerifier = window.recaptchaVerifier;
+firebase.auth()
+.signInWithPhoneNumber(phoneNumber, appVerifier)
+.then(function(confirmationResult) {
+    window.confirmationResult = confirmationResult;
+})
+.catch(function(error) {
+    console.log(error);
+});
+   
+    };
+document.getElementById('next').onclick=kan;
+</script>
+</html>

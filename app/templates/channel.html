@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="meet"></div>
+</body>
+<script src='https://meet.jit.si/external_api.js'>
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+<script>
+     var firebaseConfig = {
+      apiKey: "AIzaSyD459mLh3V-U83_cD2ZgM4herSAq76CAHY",
+      authDomain: "sapphire-meet.firebaseapp.com",
+      databaseURL: "https://sapphire-meet.firebaseio.com",
+      projectId: "sapphire-meet",
+      storageBucket: "sapphire-meet.appspot.com",
+      messagingSenderId: "414973538233",
+      appId: "1:414973538233:web:387f730b004839c2369068",
+      measurementId: "G-7ZBSX6GSDT"
+    };
+    // Initialize Firebase
+    var kan= async () =>{
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    var fire = firebase.firestore();
+    var db = fire.doc('meetings/SjVi5S7Qyj3iTqwFn6Od');
+    var docdata= await db.get();
+   var data = docdata.data();
+  
+   if("{{roomid}}" in data)
+   {
+      if (data['{{roomid}}']['current']<data['{{roomid}}']['max'])
+      {
+    let data1 = data['{{roomid}}'];
+    data1['current']++;
+    db.update({"{{roomid}}":data1});
+    console.log('loaded');
+    const domain = 'sapphiremeet.in';
+    const options = {
+        roomName: '{{roomid}}',
+         userInfo: {
+            displayName: '{{name}}',
+        },
+        width: 1330,
+        height: 630,
+        parentNode: document.querySelector('#meet')
+    };
+    var firestore = firebase.initializeApp;
+    const api = new JitsiMeetExternalAPI(domain, options);
+    console.log('done');
+    api.addEventListener('readyToClose',()=>{
+        let data1 = data['{{roomid}}'];
+    data1['current']--;
+    db.update({"{{roomid}}":data1});
+       location.href='/';
+    });
+      }
+    else
+    {
+    alert("Room is full");
+    }
+
+   }
+
+   else
+   {
+       location.href= "{% url 'sapphiremeetapp:notfound' %}"
+   }
+   
+   
+    };
+    
+    kan();
+    </script>
+</html>
