@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    {% load static %}
 	<!-- boorstrap -->
-	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{%static 'assets/css/bootstrap.min.css' %}">
 	<!-- themify-icon.css -->
-	<link rel="stylesheet" type="text/css" href="assets/css/themify-icons.css">
+	<link rel="stylesheet" type="text/css" href="{%static 'assets/css/themify-icons.css' %}">
 	<!-- animate.css -->
-	<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="{%static 'assets/css/animate.css' %}">
 	<!-- owl-carousel -->
-	<link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="{%static 'assets/css/owl.carousel.css' %}">
 	<!-- video.min.css -->
-	<link rel="stylesheet" type="text/css" href="assets/css/video.min.css">
+	<link rel="stylesheet" type="text/css" href="{%static 'assets/css/video.min.css' %}">
 	<!-- menu style -->
-	<link rel="stylesheet" type="text/css" href="assets/css/menu.css">
+	<link rel="stylesheet" type="text/css" href="{%static 'assets/css/menu.css' %}">
 	<!-- style -->
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="{%static 'assets/css/style.css' %}">
 	<!-- responsive.css -->
 	<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-	<link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
-	<link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
-	<link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+	<link href="{%static '/your-path-to-fontawesome/css/fontawesome.css' %}" rel="stylesheet">
+	<link href="{%static '/your-path-to-fontawesome/css/brands.css' %}" rel="stylesheet">
+	<link href="{%static '/your-path-to-fontawesome/css/solid.css' %}" rel="stylesheet">
 
 
 	<!-- NEW EDIT  -->
@@ -161,7 +161,7 @@ background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
 									<li>Manage Domains</li>
 									<li>Company branding</li>
 								</ul>
-								<a href="contact.html" class="read">BUY</a>
+								<a href="contact.html" class="read">Contact Sales</a>
 							</div>
 						</div>
 					</div>
@@ -175,4 +175,40 @@ background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
 
 
 </body>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+	 var firebaseConfig = {
+      apiKey: "AIzaSyD459mLh3V-U83_cD2ZgM4herSAq76CAHY",
+      authDomain: "sapphire-meet.firebaseapp.com",
+      databaseURL: "https://sapphire-meet.firebaseio.com",
+      projectId: "sapphire-meet",
+      storageBucket: "sapphire-meet.appspot.com",
+      messagingSenderId: "414973538233",
+      appId: "1:414973538233:web:387f730b004839c2369068",
+      measurementId: "G-7ZBSX6GSDT"
+    };
+	firebase.initializeApp(firebaseConfig);
+	var payment = async ()=>{
+		var firestore = firebase.firestore();
+		if (sessionStorage.getItem('users')!=null)
+		{
+			var options = {
+    "key": "rzp_live_OJXiAs7A475Myu", // Enter the Key ID generated from the Dashboard
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    
+};
+		}
+		else{
+			location.href='/auth';
+		}
+
+	};
+
+</script>
+
 </html>

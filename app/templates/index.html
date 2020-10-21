@@ -16,27 +16,27 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- css-include -->
-
+	{% load static %}
 	<!-- boorstrap -->
-	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
 	<!-- themify-icon.css -->
-	<link rel="stylesheet" type="text/css" href="assets/css/themify-icons.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/themify-icons.css' %}">
 	<!-- animate.css -->
-	<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.css' %}">
 	<!-- owl-carousel -->
-	<link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl.carousel.css' %}">
 	<!-- video.min.css -->
-	<link rel="stylesheet" type="text/css" href="assets/css/video.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/video.min.css' %}">
 	<!-- menu style -->
-	<link rel="stylesheet" type="text/css" href="assets/css/menu.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/menu.css' %}">
 	<!-- style -->
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
 	<!-- responsive.css -->
-	<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css' %}">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-	<link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
-	<link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
-	<link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+	<link href="{% static '/your-path-to-fontawesome/css/fontawesome.css' %}" rel="stylesheet">
+	<link href="{% static '/your-path-to-fontawesome/css/brands.css' %}" rel="stylesheet">
+	<link href="{% static '/your-path-to-fontawesome/css/solid.css' %}" rel="stylesheet">
 
 
 	<!-- NEW EDIT  -->
@@ -68,19 +68,19 @@
 										<i class="ti-menu"></i>
 									</button><!-- /.navbar-toggle collapsed -->
 									<a class="navbar-brand text-uppercase" href="#"><img
-											src="assets/img/logo/rsz_sm_logo_1.png" alt="logo"></a>
+											src="{% static 'assets/img/logo/rsz_sm_logo_1.png' %}" alt="logo"></a>
 								</div><!-- /.navbar-header -->
 
 								<!-- Collect the nav links, forms, and other content for toggling -->
 								<nav class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 									<ul id="main-nav" class="nav navbar-nav">
-										<li><a href="index-3.html">HOME-Sapphire</a></li>
+										<li><a href="/">HOME-Sapphire</a></li>
 										<li><a href="#about">about</a></li>
 										<li><a href="#extra-features">Features</a></li>
 										<li><a href="#showcase">Showcase</a></li>
-										<li><a href="/pricing.html">Pricing</a></li>
+										<li><a href="/price">Pricing</a></li>
 										<li><a href="#download-area">DOWNLOAD<span class="ti-import"></span></a></li>
-										<li><a href="/contact.html">Contact</a></li>
+										<li><a href="/contactus">Contact</a></li>
 									</ul><!-- /#main-nav -->
 								</nav><!-- /.navbar-collapse -->
 							</div><!-- /.container-fluid -->
@@ -113,15 +113,15 @@
 						<div class="download-store ul-li">
 							<ul class="store-list">
 								 <li><a href="https://play.google.com/store?hl=en" target="blank"><img
-											src="assets/img/store/google.png"></a></li>
+											src="{% static 'assets/img/store/google.png' %}"></a></li>
 											
 								<li><a href="https://itunes.apple.com/us/app/apple-store/id375380948?mt=8"
-										target="blank"><img src="assets/img/store/apple.png"></a></li> -->
+										target="blank"><img src="{% static 'assets/img/store/apple.png' %}"></a></li> -->
 							</ul>
 						</div>
 
 						<div class="banner-mock-up home-1 zooming">
-							<img src="assets/img/mock-up/rsz_bn.jpg" alt="img">
+							<img src="{% static 'assets/img/mock-up/rsz_bn.jpg' %}" alt="img">
 						</div>
 
 					</div><!-- /banner-area-head -->
@@ -224,7 +224,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="about-left-img zooming">
-								<img src="assets/img/mock-up/about.png" alt="img">
+								<img src="{%static 'assets/img/mock-up/about.png' %}" alt="img">
 							</div>
 						</div>
 						<!-- //col-sm-6 -->
@@ -340,7 +340,7 @@
 
 						<div class="col-sm-4">
 							<div class="extra-pic text-center">
-								<img src="assets/img/mock-up/extra.png" alt="img">
+								<img src="{%static 'assets/img/mock-up/extra.png' %}" alt="img">
 							</div>
 						</div>
 						<!-- /col-sm-6 -->
@@ -449,37 +449,37 @@
 					<!-- //section-title -->
 					<div class="showcase-slider">
 						<div class="showcase-img">
-							<img src="assets/img/showcase/image5.png" alt="img">
+							<img src="{%static 'assets/img/showcase/image5.png' %}" alt="img">
 						</div>
 						<div class="showcase-img">
-							<img src="assets/img/showcase/image3.png" alt="img">
+							<img src="{%static 'assets/img/showcase/image3.png' %}" alt="img">
 						</div>
 						<div class="showcase-img">
-							<img src="assets/img/showcase/image1.png" alt="img">
+							<img src="{%static 'assets/img/showcase/image1.png' %}" alt="img">
 						</div>
 						<div class="showcase-img">
-							<img src="assets/img/showcase/image7.png" alt="img">
+							<img src="{%static 'assets/img/showcase/image7.png' %}" alt="img">
 						</div>
 						<div class="showcase-img">
-							<img src="assets/img/showcase/image5.png" alt="img">
+							<img src="{%static 'assets/img/showcase/image5.png' %}" alt="img">
 						</div>
 						<div class="showcase-img">
-							<img src="assets/img/showcase/image3.png" alt="img">
+							<img src="{%static 'assets/img/showcase/image3.png' %}" alt="img">
 						</div>
 						<div class="showcase-img">
-							<img src="assets/img/showcase/image1.png" alt="img">
+							<img src="{%static 'assets/img/showcase/image1.png' %}" alt="img">
 						</div>
 						<div class="showcase-img">
-							<img src="assets/img/showcase/image5.png" alt="img">
+							<img src="{%static 'assets/img/showcase/image5.png' %}" alt="img">
 						</div>
 						<div class="showcase-img">
-							<img src="assets/img/showcase/image3.png" alt="img">
+							<img src="{%static 'assets/img/showcase/image3.png' %}" alt="img">
 						</div>
 						<div class="showcase-img">
-							<img src="assets/img/showcase/image1.png" alt="img">
+							<img src="{%static 'assets/img/showcase/image1.png' %}" alt="img">
 						</div>
 						<div class="showcase-img">
-							<img src="assets/img/showcase/image7.png" alt="img">
+							<img src="{%static 'assets/img/showcase/image7.png' %}" alt="img">
 						</div>
 
 
@@ -514,7 +514,7 @@
 							<!-- //text -->
 							<div class="testimonial-name-des  pt25">
 								<div class="testimonial-pic">
-									<img src="assets/img/testimonial/testi-1.jpg" alt="img">
+									<img src="{%static 'assets/img/testimonial/testi-1.jpg' %}" alt="img">
 								</div>
 								<!-- //pic -->
 								<div class="client-designation pt20">
@@ -543,7 +543,7 @@
 							<!-- //text -->
 							<div class="testimonial-name-des  pt25">
 								<div class="testimonial-pic">
-									<img src="assets/img/testimonial/testi-3.jpg" alt="img">
+									<img src="{%static 'assets/img/testimonial/testi-3.jpg' %}" alt="img">
 								</div>
 								<!-- //pic -->
 								<div class="client-designation pt20">
@@ -572,7 +572,7 @@
 							<!-- //text -->
 							<div class="testimonial-name-des  pt25">
 								<div class="testimonial-pic">
-									<img src="assets/img/testimonial/testi-1.jpg" alt="img">
+									<img src="{%static 'assets/img/testimonial/testi-1.jpg' %}" alt="img">
 								</div>
 								<!-- //pic -->
 								<div class="client-designation pt20">
@@ -618,7 +618,7 @@
 							<li><a href="https://play.google.com/store?hl=en" target="blank"><img
 										src="assets/img/store/google.png"></a></li>
 							<li><a href="https://itunes.apple.com/us/app/apple-store/id375380948?mt=8"
-									target="blank"><img src="assets/img/store/apple.png"></a></li>
+									target="blank"><img src="{%static 'assets/img/store/apple.png' %}"></a></li>
 						</ul>
 					</div>
 				</div>
@@ -721,17 +721,17 @@
 
 
 	<!--  Js Library -->
-	<script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="{%static 'assets/js/jquery-2.1.4.min.js' %}"></script>
 	<!-- Include  for bootstrap -->
-	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{%static 'assets/js/bootstrap.min.js' %}"></script>
 	<!-- Include Owl-carousel -->
-	<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="{%static 'assets/js/owl.carousel.min.js' %}"></script>
 	<!-- Include OnePagenNav -->
 	<!-- <script type="text/javascript" src="assets/js/OnePagenNav.js"></script> -->
 	<!-- Include jquery.magnific-popup.min.js-->
-	<script type="text/javascript" src="assets/js/jquery.magnific-popup.min.js"></script>
+	<script type="text/javascript" src="{%static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
 	<!-- Include script.js-->
-	<script type="text/javascript" src="assets/js/script.js"></script>
+	<script type="text/javascript" src="{%static 'assets/js/script.js' %}"></script>
 
 </body>
 

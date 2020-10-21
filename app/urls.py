@@ -10,4 +10,8 @@ path('enter/',views.enter,name='enter'),
 path('notfound/',views.notfound,name='notfound'),
 path('auth/',views.auth,name='auth'),
 path('hostpage/<slug:docid>',views.hostpage,name='hostpage'),
+path('entering/',views.entering,name='entering'),
+path('contactus/',views.contact,name='contactus'),
+path('price/',views.pricing,name='price')
+
 ]

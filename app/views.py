@@ -6,9 +6,9 @@ def home(req):
 def about(req):
     return http.HttpResponse('ok')
 def contact(req):
-    return http.HttpResponse('ok')
+    return render(req,'contact.html')
 def pricing(req):
-    return http.HttpResponse('ok')
+    return render(req,'pricing.html')
 def channelq(req):
     print(req.POST.get('roomid'))
     return render(req,'channel.html',{'roomid':str(req.POST.get('roomid','')),'name':str(req.POST.get('name',''))})
@@ -19,5 +19,6 @@ def notfound(req):
 def auth(req):
     return render(req,'authpage.html')
 def hostpage(req,docid):
-    
     return render(req,'hostpage.html',{'docid':docid})
+def entering(req):
+    return render(req,'index.html')
