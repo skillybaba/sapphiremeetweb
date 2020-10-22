@@ -77,7 +77,7 @@ background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
 									<li>No manage domains </li>
 									<li>No Company Branding </li>
 								</ul>
-								<a href="/PAYMENTPAGE/paymentpage.html" class="read">FREE</a>
+								<a  class="read">FREE</a>
 							</div>
 						</div>
 					</div>
@@ -105,7 +105,7 @@ background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
 									<li>No manage domains </li>
 									<li>No Company Branding </li>
 								</ul>
-								<a href="/PAYMENTPAGE/paymentpage.html" class="read">BUY</a>
+								<button class="read" onclick="payment('39900')">BUY</button> 
 							</div>
 						</div>
 					</div>
@@ -133,7 +133,7 @@ background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
 									<li>Manage Domains</li>
 									<li>Company branding</li>
 								</ul>
-								<a href="/PAYMENTPAGE/paymentpage.html" class="read">BUY</a>
+							<button class="read" onclick="payment('49900')">BUY</button> 
 							</div>
 						</div>
 					</div>
@@ -161,7 +161,7 @@ background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
 									<li>Manage Domains</li>
 									<li>Company branding</li>
 								</ul>
-								<a href="contact.html" class="read">Contact Sales</a>
+								<a href="/contactus" class="read">Contact Sales</a>
 							</div>
 						</div>
 					</div>
@@ -192,17 +192,35 @@ background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
       measurementId: "G-7ZBSX6GSDT"
     };
 	firebase.initializeApp(firebaseConfig);
-	var payment = async ()=>{
+	var payment = async (price)=>{
+		console.log(price);
 		var firestore = firebase.firestore();
-		if (sessionStorage.getItem('users')!=null)
+		if (sessionStorage.getItem('user')!=null)
 		{
 			var options = {
     "key": "rzp_live_OJXiAs7A475Myu", // Enter the Key ID generated from the Dashboard
-    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "amount": price, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     "currency": "INR",
     
 };
-		}
+var razory = new Razorpay(options);
+razory.on('payment.success',function(res){
+	var doc = firestore.doc(sessionStorage.getItem('user'));
+	if(price=='39900')
+	{
+		doc.update({
+			'account': 'pro'
+		});
+	}
+	else if(price=='49900')
+	doc.update({
+			'account': 'bus'
+		});
+	
+		});
+		razory.open();
+		
+	}
 		else{
 			location.href='/auth';
 		}
