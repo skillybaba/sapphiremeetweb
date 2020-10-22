@@ -92,12 +92,16 @@
         var docdata= await doc.get();
         console.log(docdata.data());
         var key= document.getElementById('verif').value;
-        if(key in docdata.data())
+        if((key in docdata.data()) &&(docdata.data()[key]!=null))
         {
             var userdoc = sessionStorage.setItem('user',docdata.data()[key]);
                       var val= docdata.data()[key];
-                      console.log(key);
-                   console.log(val);
+                     
+                
+                    
+                  await  doc.update({
+                       [key]:null,
+                   });
                    val=val.split('/');
             location.href='/hostpage/'+val[1];
 

@@ -35,7 +35,8 @@
   <div class="form-group row">
     <label for="inputEmail3"  class="col-sm-2 col-form-label">Create Your Room id</label>
     <div class="col-sm-10">
-      <input type="text" id = 'roomid' class="form-control" id="inputEmail3" name="roomid">
+      <input type="text" id = 'roomid' class="form-control" id="inputEmail3" >
+      <input type="hidden" name="roomid" id='room'>
     </div>
   </div>
   <input type="hidden" id="max"> 
@@ -95,11 +96,19 @@
         max=1000;
         else if(data== 'Ent')
         max=100000;
-      var roomid=document.getElementById('roomid').value;
-
+      var roomid=document.getElementById('roomid').value+Math.random().toString();
+    
+    document.getElementById('room').value=roomid.split('.')[0]+roomid.split('.')[1];
+    
         var doc2 = firestore.doc('meetings/SjVi5S7Qyj3iTqwFn6Od');
-        
-        
+        roomid=roomid.split('.')[0]+roomid.split('.')[1];
+        var val = await doc.get();
+        var data = val.data()['roomid'];
+        console.log(data);
+        data.push(roomid);
+        await doc.update({
+          'roomid':data}
+        );
         await doc2.update({
      [roomid]:{
        'current':1,'max':max
