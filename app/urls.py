@@ -16,5 +16,7 @@ path('price/',views.pricing,name='price'),
 path('googleauth/',views.authA,name='authgoogle'),
 path('appleauth/',views.authB,name='authapple'),
 path('applesignup/',views.authC,name='authapplesignup'),
+path('commingsoon/',views.commingsoon,name='comming'),
+path('obs/',views.obs,name='OBS')
 
 ]

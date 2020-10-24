@@ -28,3 +28,7 @@ def authB(req):
     return render(req,'appleauth.html')
 def authC(req):
     return render(req,'applesignup.html')
+def commingsoon(req):
+    return render(req,'coomingsoon.html')
+def obs(req):
+    return HttpResponse('ok')
