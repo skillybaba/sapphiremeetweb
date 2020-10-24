@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% load static %}
 <!-- Site Metas -->
-<title>StyleBarber - Bootstrap 4 Responsive HTML5 Template</title>
+<title>Sapphire</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -66,6 +66,9 @@
 
 </head>
 <style>
+.ht{
+	background:url("https://collegead.com/wp-content/uploads/2018/01/communication-1024x576.jpg");
+}
 	/* Style the header with a grey background and some padding */
 	.header {
 		overflow: hidden;
@@ -108,7 +111,7 @@
 	.header-right {
 		float: right;
 	}
-
+	
 	/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
 	@media screen and (max-width: 500px) {
 		.header a {
@@ -121,14 +124,19 @@
 			float: none;
 		}
 	}
+	#logoimg{
+width:150px;
+	height: 114px;;
+	}
 </style>
 
 <body class="barber_version">
 
 	<div class="header">
-		<a href="#default" class="logo">CompanyLogo</a>
+		<img id="logoimg"
+		src="{% static 'assets/img/logo/SM logo (1).png' %}" alt="logo">
 		<div class="header-right">
-			<a class="active" href="entering/">ENTER</a>
+			<a class="active" href="entering/">EXPLORE</a>
 
 			<a href="/SAPPHIRECHATPANNEL/chatsapphirehome.html">Sapphire Web</a>
 
@@ -142,38 +150,31 @@
 
 	<div id="home" class="parallax">
 		<div id="full-width" class="owl-carousel owl-theme home-hero">
-			<div class="text-center item slider-01 display-table overlay">
+			<div class="text-center item ht slider-01 display-table overlay">
 				<div class="display-table-cell">
 					<div class="big-tagline text-center">
 						<h1>Sapphire Meet</h1>
-						<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum perferendis fugit magnam
-							repellat necessitatibus nam mollitia culpa perspiciatis similique dolorem dolor sint minus
-							illum, consectetur veniam a! Amet, voluptatum eligendi!</P>
-
+					
 						<a href="enter/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn" >Join Meeting</a>
 						<a href="auth/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn" >Host Meeting</a>
 					</div>
 				</div>
 			</div>
-			<div class="text-center item slider-02 display-table overlay">
+			<div class="text-center item ht slider-02 display-table overlay">
 				<div class="display-table-cell">
 					<div class="big-tagline text-center">
 						<h1>Sapphire Meet</h1>
-						<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum perferendis fugit magnam
-							repellat necessitatibus nam mollitia culpa perspiciatis similique dolorem dolor sint minus
-							illum, consectetur veniam a! Amet, voluptatum eligendi!</P>
+					
 						<a href="enter/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Join Meeting</a>
 						<a href="auth/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Host Meeting</a>
 					</div>
 				</div>
 			</div>
-			<div class="text-center item slider-03 display-table overlay">
+			<div class="text-center item ht slider-03 display-table overlay">
 				<div class="display-table-cell">
 					<div class="big-tagline text-center">
 						<h1>Sapphire Meet</h1>
-						<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum perferendis fugit magnam
-							repellat necessitatibus nam mollitia culpa perspiciatis similique dolorem dolor sint minus
-							illum, consectetur veniam a! Amet, voluptatum eligendi!</P>
+						
 						<a href="enter/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn"> Join Meeting</a>
 						<a href="auth/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn"> Host Meeting</a>
 					</div>

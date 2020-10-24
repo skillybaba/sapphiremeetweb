@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <style>
@@ -34,48 +35,219 @@
        position: relative;
        display: none;
    }
+   .clas{
+   
+    display: none;
+       position: absolute;
+       top:38%;
+       left:38%;
+      
+       opacity: 1;
+   
+       
+   }
+   .al{
+       opacity: 0.1;
+   }
+   * {
+  padding: 0px;
+  margin: 0px;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #00071C;
+}
+ ul {
+   position: relative;
+   display: flex;
+   transform: rotate(-25deg) skew(25deg);
+   transform-style: preserve-3d;
+}
+ul li {
+  position: relative;
+  list-style: none;
+  width: 60px;
+  height: 60px;
+  margin: 0px 20px;
+}
+ul li:before{
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: -5px;
+  width: 100%;
+  height: 10px;
+  background: #2a2a2a;
+  trnasform-origin: top;
+  transform: skewX(-41deg);
+}
+ul li:after{
+  content: '';
+  position: absolute;
+  top:5px;
+  left: -9px;
+  width: 9px;
+  height: 100%;
+  background: #2a2a2a;
+  trnasform-origin: right;
+  transform: skewY(-49deg);
+}
+ul li span{
+  position: absolute;
+  top: 0;
+  lef: 0;
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  background: #2a2a2a;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 30px !important;
+  transition: 1.5s ease-out;
+}
+ul li:hover span {
+  z-index: 1000;
+  transition: .3s;
+  color: #fff;
+  box-shadw: -1px 1px 1px rgba(0, 0, 0, .5);
+}
+ul li:hover span:nth-child(5){
+  transform: translate(40px, -40px);
+  opacity: 1;
+}
+ul li:hover span:nth-child(4){
+  transform: translate(30px, -30px);
+  opacity: .8;
+}
+ul li:hover span:nth-child(3){
+  transform: translate(20px, -20px);
+  opacity: .6;
+}
+ul li:hover span:nth-child(2){
+  transform: translate(10px, -10px);
+  opacity: .4;
+}ul li:hover span:nth-child(1){
+  transform: translate(0px, 0px);
+  opacity: .2;
+}
+ul li:nth-child(1):hover span{
+  background: #52E19F !important;
+}
+ul li:nth-child(2):hover span{
+  background: #2C3456 !important;
+}
+ul li:nth-child(3):hover span{
+  background: #EA6E96 !important;
+}
+ul li:nth-child(4):hover span{
+  background: #FCEB00 !important;
+}
 </style>
-<body>
-    <div class="input-group input-group-sm mar">
+<div>
+    <div>
+        <h1> Using your mobile app</h1>
+    </div>
+</div>
+<body >
+    <!-- <div  id="one12">
+    <div class=" input-group input-group-sm mar">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroup-sizing-sm">Enter the Verification Code </span>
         </div>
         <input type="text" id = 'verif' class="form-control mar2">
         
       </div>
-      <button type="button" id='auth' class="mar4 btn btn-secondary btn-lg">Auth With credentials</button>
+      <button type="button" id='auth' class="mar4 btn btn-secondary btn-lg">Auth With credentials</button> -->
     
     
     
-      <Button id="but"  class='mar3 btn btn-primary btn-lg'> 
+      <!-- <Button id="but"  class='mar3 btn btn-primary btn-lg'> 
        <img src="https://image.freepik.com/free-icon/auricular-phone_318-1028.jpg" alt="" width="40">
        phone auth
     </Button>
     <div>
+        <div class =''>
         <div class="form-group mar hide" id='val'>
             <input type="text"  class="form-control" id="formGroupExampleInput" value='+91' placeholder="Enter the Phone number">
             <button type="button" id = 'next' class="btn btn-success">next</button>
           </div>
+        </div>
     </div>
-    <div id='recaptcha-container'>
-        
+    <div id='re'>
+       
     </div>
+</div>
+    <div class='clas' >
+        <div class="clasa">
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="addon-wrapping">OTP</span>
+            </div>
+            <input type="text" id='code' class="form-control" placeholder="Enter your verification code" aria-label="Username" aria-describedby="addon-wrapping">
+          </div>
+          <br>
+          <br>
+          <button type="button" class="mar4 btn btn-primary">Login</button>
+        </div>
+    </div> -->
+    {% load static %}
+    <div>
+       
+          
+        <ul> 
+          <li>
+            <a href="/googleauth/">
+              <span>
+                <img src="{% static 'mobile-app.png' %}" alt="">  
+              </span>
+              <span><img src="{% static 'mobile-app.png' %}" alt=""></span>
+              <span><img src="{% static 'mobile-app.png' %}" alt=""></span>
+              <span><img src="{% static 'mobile-app.png' %}" alt=""></span>
+             
+              <span class="fa fa-facebook"> <img src="{% static 'mobile-app.png' %}" alt=""> </span>
+            </a> 
+          </li>
+         <br>
+         <br>
+         <br>
+         <br>
+          <li>
+            <a href="/appleauth">
+              <span><img src="https://sm.pcmag.com/t/pcmag_in/review/a/apple-ios-/apple-ios-13_ra79.1920.png" alt=""></span>
+              <span><img src="https://sm.pcmag.com/t/pcmag_in/review/a/apple-ios-/apple-ios-13_ra79.1920.png" alt=""></span>
+              <span><img src="https://sm.pcmag.com/t/pcmag_in/review/a/apple-ios-/apple-ios-13_ra79.1920.png" alt=""></span>
+              <span><img src="https://sm.pcmag.com/t/pcmag_in/review/a/apple-ios-/apple-ios-13_ra79.1920.png" alt=""></span>
+              <span class="fa fa-instagram"><img src="https://sm.pcmag.com/t/pcmag_in/review/a/apple-ios-/apple-ios-13_ra79.1920.png" alt=""></span>
+            </a> 
+          </li>
+          
+        </ul>  
+      </div> 
+      <div>
+          <div>
+        <h1>For IOS Users Only</h1>
+    </div>
+      </div>
 </body>
-<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script> -->
 <script>
-     var firebaseConfig = {
-      apiKey: "AIzaSyD459mLh3V-U83_cD2ZgM4herSAq76CAHY",
-      authDomain: "sapphire-meet.firebaseapp.com",
-      databaseURL: "https://sapphire-meet.firebaseio.com",
-      projectId: "sapphire-meet",
-      storageBucket: "sapphire-meet.appspot.com",
-      messagingSenderId: "414973538233",
-      appId: "1:414973538233:web:387f730b004839c2369068",
-      measurementId: "G-7ZBSX6GSDT"
-    };
+    //  var firebaseConfig = {
+    //   apiKey: "AIzaSyD459mLh3V-U83_cD2ZgM4herSAq76CAHY",
+    //   authDomain: "sapphire-meet.firebaseapp.com",
+    //   databaseURL: "https://sapphire-meet.firebaseio.com",
+    //   projectId: "sapphire-meet",
+    //   storageBucket: "sapphire-meet.appspot.com",
+    //   messagingSenderId: "414973538233",
+    //   appId: "1:414973538233:web:387f730b004839c2369068",
+    //   measurementId: "G-7ZBSX6GSDT"
+    // };
     if(sessionStorage.getItem('user')!=null)
     {
         var val=sessionStorage.getItem('user');
@@ -84,72 +256,87 @@
          location.href='/hostpage/'+val[1];
     }
     
-    firebase.initializeApp(firebaseConfig);
-    document.getElementById('auth').onclick= async ()=>{
-        console.log(3);
-        var firestore=firebase.firestore();
-        var doc = firestore.doc('web/0ysJuZ64RshAHyBnbMqc');
-        var docdata= await doc.get();
-        console.log(docdata.data());
-        var key= document.getElementById('verif').value;
-        if((key in docdata.data()) &&(docdata.data()[key]!=null))
-        {
-            var userdoc = sessionStorage.setItem('user',docdata.data()[key]);
-                      var val= docdata.data()[key];
+    // firebase.initializeApp(firebaseConfig);
+    // document.getElementById('auth').onclick= async ()=>{
+    //     console.log(3);
+    //     var firestore=firebase.firestore();
+    //     var doc = firestore.doc('web/0ysJuZ64RshAHyBnbMqc');
+    //     var docdata= await doc.get();
+    //     console.log(docdata.data());
+    //     var key= document.getElementById('verif').value;
+    //     if((key in docdata.data()) &&(docdata.data()[key]!=null))
+    //     {
+    //         var userdoc = sessionStorage.setItem('user',docdata.data()[key]);
+    //                   var val= docdata.data()[key];
                      
                 
                     
-                  await  doc.update({
-                       [key]:null,
-                   });
-                   val=val.split('/');
-            location.href='/hostpage/'+val[1];
+    //               await  doc.update({
+    //                    [key]:null,
+    //                });
+    //                val=val.split('/');
+    //         location.href='/hostpage/'+val[1];
 
-        }
-        else{
-            alert('Wrong credentials');
-        }
+    //     }
+    //     else{
+    //         alert('Wrong credentials');
+    //     }
         
 
-    } 
+    // } 
 
-     document.getElementById('but').onclick=()=>
-        {
-            if(document.getElementById('val').style.display=='none')
-            document.getElementById('val').style.display='block';
-            else
-            document.getElementById('val').style.display='none';
-            console.log('done');
+    //  document.getElementById('but').onclick=()=>
+    //     {
+    //         if(document.getElementById('val').style.display=='none')
+    //         document.getElementById('val').style.display='block';
+    //         else
+    //         document.getElementById('val').style.display='none';
+    //         console.log('done');
        
-        };
-    var kan = function()
-    {
-        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-    "recaptcha-container",
-    {
-        size: "invisible",
-    callback: function(response) {
+    //     };
+//     var kan = function()
+//     {
+//         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+//     "next",
+//     {
+//         size: "invisible",
+//     callback: function(response) {
       
-    }
-    }
+//     }
+//     }
     
-);
+// );
 
     
     
- var phoneNumber = document.getElementById('formGroupExampleInput').value;
-    console.log(phoneNumber);
-var appVerifier = window.recaptchaVerifier;
-firebase.auth()
-.signInWithPhoneNumber(phoneNumber, appVerifier)
-.then(function(confirmationResult) {
-    window.confirmationResult = confirmationResult;
-})
-.catch(function(error) {
-    console.log(error);
-});
+//  var phoneNumber = document.getElementById('formGroupExampleInput').value;
+//     console.log(phoneNumber);
+// var appVerifier = window.recaptchaVerifier;
+// firebase.auth()
+// .signInWithPhoneNumber(phoneNumber, appVerifier)
+// .then(function(confirmationResult) {
+//     window.confirmationResult = confirmationResult;
+//     document.getElementById('one12').classList.toggle("al");
+
+
+// })
+// .catch(function(error) {
+//     console.log(error);
+// });
    
-    };
+//     };
+//     var onsubmmit=()=>{
+//         var code = document.getElementById('code').value;
+//         var redult  = window.confirmationResult.confirm(code).then(function(result) {
+//         var user = result.user;
+//         if(user!=null)
+//         {
+
+//         }
+//        }).catch(function(error) {
+//         console.log(error);
+//     });
+//     };
 document.getElementById('next').onclick=kan;
 </script>
 </html>

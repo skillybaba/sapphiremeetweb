@@ -12,6 +12,9 @@ path('auth/',views.auth,name='auth'),
 path('hostpage/<slug:docid>',views.hostpage,name='hostpage'),
 path('entering/',views.entering,name='entering'),
 path('contactus/',views.contact,name='contactus'),
-path('price/',views.pricing,name='price')
+path('price/',views.pricing,name='price'),
+path('googleauth/',views.authA,name='authgoogle'),
+path('appleauth/',views.authB,name='authapple'),
+path('applesignup/',views.authC,name='authapplesignup'),
 
 ]

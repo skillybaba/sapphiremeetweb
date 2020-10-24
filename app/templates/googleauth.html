@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<style>
+  
+    /* //ENTER */
+    .mar{
+        margin-top: 5%;
+       margin-left: 10%;
+       margin-right: 10%;
+    
+    }
+
+    .mar2
+    {
+        margin-right: 300px;
+    }
+    .mar4
+    {
+        margin-left: 40%;
+        margin-top:1%;
+    }
+   .mar3
+   {
+       margin-top:10%;
+       margin-left: 40%;
+   }
+   .hide{
+       width: 50%;
+       margin-left: 25%;
+       position: relative;
+       display: none;
+   }
+
+
+
+   /* //Auth CSS */
+   body{
+    margin: 0;
+    padding: 0;
+    background-image: url('assets/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: sans-serif;
+}
+
+.login-container{
+    width: 370px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    background: #000;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    color: #fff;
+    padding: 40px 20px;
+}
+
+.login-container img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: calc(50% - 50px);
+    border-radius: 50%;
+    top: -50px;
+}
+
+.login-container h1{
+    text-align: center;
+    font-size: 20px;
+}
+
+.login-container label{
+    display: block;
+}
+
+.login-container div{
+    margin-bottom: 20px;
+}
+
+.login-container input[type="text"], input[type="password"]{
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ffff;
+    background: transparent;
+    color: #ffff;
+    height: 40px;
+}
+
+.login-container input[type="button"]{
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 40px;
+    background-image: linear-gradient(to right,#F26FC9, #8772EF);
+    color: #ffff;
+    
+}
+.login-container input[type="button"] :hover{
+    cursor: pointer;
+    box-shadow: 1px 1px 10px #696969;
+}
+a{
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    color: #fff;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+a:hover{
+    color: #d3d3d3;
+    
+}
+#next{
+    width: 20%;
+    border: none;
+    outline: none;
+    height: 30px;
+    background-image: linear-gradient(to right,#F26FC9, #8772EF);
+    color: #ffff;
+    
+}
+   
+</style>
+<body>
+
+   
+        <div class="login-container">
+            <!-- <img src="assets/avatar.jpg" alt="avatar image"> -->
+            <form action="">
+                <h1>LOGIN</h1>
+                <div>
+                    <label>Enter the Verification code</label>
+                    <input type="text" name="username" placeholder="Enter your verification code here" value="" id="verif">
+                </div>
+               
+                <input type="button" name="login" id="auth" value="Auth With credentials">
+                <br>
+              <br>
+               
+<!--                 
+                <div>
+                    <div class="form-group mar hide" id='val'>
+                        <input type="text"  class="form-control" id="formGroupExampleInput" value='+91' placeholder="Enter the Phone number">
+                        <button type="button" id = 'next' class="btn btn-success">next</button>
+                      </div>
+                </div> -->
+              
+            </form>
+        </div>
+         
+    <!-- <div id='recaptcha-container'> -->
+        
+    
+</body>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+<script>
+     var firebaseConfig = {
+      apiKey: "AIzaSyD459mLh3V-U83_cD2ZgM4herSAq76CAHY",
+      authDomain: "sapphire-meet.firebaseapp.com",
+      databaseURL: "https://sapphire-meet.firebaseio.com",
+      projectId: "sapphire-meet",
+      storageBucket: "sapphire-meet.appspot.com",
+      messagingSenderId: "414973538233",
+      appId: "1:414973538233:web:387f730b004839c2369068",
+      measurementId: "G-7ZBSX6GSDT"
+    };
+    if(sessionStorage.getItem('user')!=null)
+    {
+        var val=sessionStorage.getItem('user');
+        console.log(val);
+        val=val.split('/');
+         location.href='/hostpage/'+val[1];
+    }
+    
+    firebase.initializeApp(firebaseConfig);
+    document.getElementById('auth').onclick= async ()=>{
+        console.log(3);
+        var firestore=firebase.firestore();
+        var doc = firestore.doc('web/0ysJuZ64RshAHyBnbMqc');
+        var docdata= await doc.get();
+        console.log(docdata.data());
+        var key= document.getElementById('verif').value;
+        if(key in docdata.data())
+        {
+            var userdoc = sessionStorage.setItem('user',docdata.data()[key]);
+                      var val= docdata.data()[key];
+                      console.log(key);
+                   console.log(val);
+                   val=val.split('/');
+            location.href='/hostpage/'+val[1];
+
+        }
+        else{
+            alert('Wrong credentials');
+        }
+        
+
+    } 
+
+     document.getElementById('but').onclick=()=>
+        {
+            if(document.getElementById('val').style.display=='none')
+            document.getElementById('val').style.display='block';
+            else
+            document.getElementById('val').style.display='none';
+            console.log('done');
+       
+        };
+    var kan = function()
+    {
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    "recaptcha-container",
+    {
+        size: "invisible",
+    callback: function(response) {
+      
+    }
+    }
+    
+);
+
+    
+    
+ var phoneNumber = document.getElementById('formGroupExampleInput').value;
+    console.log(phoneNumber);
+var appVerifier = window.recaptchaVerifier;
+firebase.auth()
+.signInWithPhoneNumber(phoneNumber, appVerifier)
+.then(function(confirmationResult) {
+    window.confirmationResult = confirmationResult;
+})
+.catch(function(error) {
+    console.log(error);
+});
+   
+    };
+document.getElementById('next').onclick=kan;
+</script>
+</html>

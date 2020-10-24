@@ -20,5 +20,11 @@ def auth(req):
     return render(req,'authpage.html')
 def hostpage(req,docid):
     return render(req,'hostpage.html',{'docid':docid})
+def authA(req):
+    return render(req,'googleauth.html')
 def entering(req):
     return render(req,'index.html')
+def authB(req):
+    return render(req,'appleauth.html')
+def authC(req):
+    return render(req,'applesignup.html')
