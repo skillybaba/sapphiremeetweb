@@ -31,4 +31,4 @@ def authC(req):
 def commingsoon(req):
     return render(req,'coomingsoon.html')
 def obs(req):
-    return HttpResponse('ok')
+    return render(req,'index12.html')
