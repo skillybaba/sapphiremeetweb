@@ -14,21 +14,34 @@
         background-color: silver;
     }
 </style>
+
 <body class="col">
-    <form class="marg">
+{% if auth == True %}
+<div class="alert alert-success" role="alert">
+  Created
+</div>
+{% elif auth == False %}
+<div class="alert alert-danger" role="alert">
+either users alredy or some other error
+</div>
+
+
+{% endif %}
+
+    <form class="marg" method="POST" id='signup' action='/applesignup/'> {% csrf_token %}
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4">
+            <input type="email" class="form-control" id="inputEmail4" name='email'>
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Password</label>
-            <input type="password" class="form-control" id="inputPassword4">
+            <input type="password" class="form-control" id="inputPassword4" name='pass'>
           </div>
         </div>
           <div class="form-group col-md-6">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Enter the username">
+            <input type="text" class="form-control" id="username" placeholder="Enter the username" name='username'>
           </div>
         </div>
         </div>
@@ -52,13 +65,7 @@
     };
     firebase.initializeApp(firebaseConfig);
     document.getElementById('sign').onclick = async ()=>{
-        try{
-        var email = document.getElementById('inputEmail4').value;
-        var pass=document.getElementById('inputPassword4').value;
-        
-        var auth = firebase.auth();
-        var authvals= await auth.createUserWithEmailAndPassword(email, pass);
-
+       
 var firestore = firebase.firestore();
 var doc = firestore.doc('ios/79G4HWeB4dFm5Fr5EUk8');
 
@@ -74,12 +81,9 @@ var ref= await coll.add({
 await doc.update({
     [email]:ref
 });
-location.href='/appleauth';
-        }
-        catch(error)
-        {
-            alert(error);
-        }
+
+    document.getElementById('signup').submit();
+       
     };
 </script>
 </html>

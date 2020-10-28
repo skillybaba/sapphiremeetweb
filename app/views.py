@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django import http
-
+from . import models
 def home(req):
     return render(req,'index-3.html')
 def about(req):
@@ -25,9 +25,32 @@ def authA(req):
 def entering(req):
     return render(req,'index.html')
 def authB(req):
-    return render(req,'appleauth.html')
+    email = req.POST.get('email','')
+    password = req.POST.get('password','')
+    arg={}
+    if email!='' and password!='' and models.user.objects.filter(email=email,passcode=password):
+        arg['auth']='true'
+    else :
+        arg['auth']='false'
+    return render(req,'appleauth.html',arg)
 def authC(req):
-    return render(req,'applesignup.html')
+    username=req.POST.get('username','')
+    email = req.POST.get('email','')
+    password = req.POST.get('pass','')
+    arg={}
+    if username!="" and email !='' and password!='' and not models.user.objects.filter(email=email,name=username,passcode=password):
+        a=models.user()
+        a.email=email
+        a.name=username
+        a.passcode=password
+        a.save()
+        arg['auth']=True
+    elif email=='' and password=='' and username=='':
+        arg['auth']='fs'
+    else:
+        arg['auth']=False
+    
+    return render(req,'applesignup.html',arg)
 def commingsoon(req):
     return render(req,'coomingsoon.html')
 def obs(req):

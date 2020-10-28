@@ -25,20 +25,21 @@
 {% load static %}
   <body class="coo">
       <img class="marq" src="{% static 'apple.png' %}" alt="" width='100'>
-    <form class="mar">
+    <form class="mar" method="POST" action='/appleauth/'> {% csrf_token %}
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email'>
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+    <input type="password" class="form-control" id="exampleInputPassword1" name='password'>
   </div>
   
-  <button type="button" id = 'logi' class="btn btn-primary">Login</button>
+  <button type="submit" id = 'logi' class="btn btn-primary">Login</button>
   <button type="button" id="newa" class="btn btn-secondary">Create Your Account</button>
 </form>
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -61,28 +62,28 @@
       measurementId: "G-7ZBSX6GSDT"
     };
     firebase.initializeApp(firebaseConfig);
-document.getElementById('logi').onclick= async ()=>{
-  var auth = firebase.auth();
+if( {{auth}}=='true' )
+{
+  var kan = async ()=>{
+var auth = firebase.auth();
   var email = document.getElementById('exampleInputEmail1').value;
 var  password =document.getElementById('exampleInputPassword1').value;
-try{
-  var user = await auth.signInWithEmailAndPassword(email, password);
-  if (user!=null)
-  {
+
+  
     var firestore = firebase.firestore();
     var doc = firestore.doc('ios/79G4HWeB4dFm5Fr5EUk8');
     var data = await doc.get();
+    if(data.data()[email]!=null)
     sessionStorage.setItem('users',data.data()[email]);
-    
+    else
+    alert('no user avalable');
+
+    location.href='/hostpage/'+data.data()[email];
   }
+  kan();
 }
-catch(e)
-{
-  console.log(e);
-  
-}
-};
-document.getElementById('newa').onclick=()=>{location.href='/applesignup/';};
+
+document.getElementById('newa').onclick=()=>{location.href='/applesignup';};
     </script>
     <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
