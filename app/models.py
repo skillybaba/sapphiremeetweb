@@ -8,5 +8,5 @@ class user(models.Model):
     email=models.TextField(max_length=300)
     passcode= models.TextField(max_length=300)
     def __str__(self):
-        return str(id)
+        return str(self.id)
 
