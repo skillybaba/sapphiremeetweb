@@ -11,7 +11,7 @@ def pricing(req):
     return render(req,'pricing.html')
 def channelq(req):
     print(req.POST.get('roomid'))
-    return render(req,'channel.html',{"date":str(req.POST.get('date','')),'topic':str(req.POST.get('top','')),'roomid':str(req.POST.get('roomid','')),'name':str(req.POST.get('name',''))})
+    return render(req,'channel.html',{"date":str(req.POST.get('date','random')),'topic':str(req.POST.get('top','random')),'roomid':str(req.POST.get('roomid','')),'name':str(req.POST.get('name',''))})
 def enter(req):
     return render(req,'enter.html')
 def notfound(req):
@@ -59,3 +59,5 @@ def commingsoon(req):
     return render(req,'coomingsoon.html')
 def obs(req):
     return render(req,'index12.html')
+def history(req):
+    return render(req,'history.html')
