@@ -76,6 +76,9 @@
 		background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
 		padding: 20px 10px;
 	}
+	.hide{
+	    display:block;
+	}
 
 	/* Style the header links */
 	.header a {
@@ -100,7 +103,10 @@
 		background-color: #ddd;
 		color: black;
 	}
-
+	.col
+	{
+	    color:black;
+	}
 	/* Style the active/current link*/
 	.header a.active {
 		background-color: dodgerblue;
@@ -111,7 +117,7 @@
 	.header-right {
 		float: right;
 	}
-	
+
 	/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
 	@media screen and (max-width: 500px) {
 		.header a {
@@ -140,7 +146,7 @@ width:150px;
 
 			<a href="/commingsoon">Sapphire Web</a>
 
-			<a href="/obs">LIVE STREAM</a>
+			<a id='obs' class = "hide" href="/obs">LIVE STREAM</a>
 
 			<a href="price/">Pricing</a>
 
@@ -153,8 +159,8 @@ width:150px;
 			<div class="text-center item ht slider-01 display-table overlay">
 				<div class="display-table-cell">
 					<div class="big-tagline text-center">
-						<h1>Sapphire Meet</h1>
-					
+						<h1 class = 'col'>Sapphire Meet</h1>
+
 						<a href="enter/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn" >Join Meeting</a>
 						<a href="auth/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn" >Host Meeting</a>
 					</div>
@@ -163,8 +169,8 @@ width:150px;
 			<div class="text-center item ht slider-02 display-table overlay">
 				<div class="display-table-cell">
 					<div class="big-tagline text-center">
-						<h1>Sapphire Meet</h1>
-					
+						<h1  class = 'col'>Sapphire Meet</h1>
+
 						<a href="enter/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Join Meeting</a>
 						<a href="auth/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Host Meeting</a>
 					</div>
@@ -173,8 +179,8 @@ width:150px;
 			<div class="text-center item ht slider-03 display-table overlay">
 				<div class="display-table-cell">
 					<div class="big-tagline text-center">
-						<h1>Sapphire Meet</h1>
-						
+						<h1  class = 'col'>Sapphire Meet</h1>
+
 						<a href="enter/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn"> Join Meeting</a>
 						<a href="auth/" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn"> Host Meeting</a>
 					</div>
@@ -183,25 +189,58 @@ width:150px;
 		</div>
 	</div><!-- end section -->
 
-	<!-- Start of footer section        
+	<!-- Start of footer section
 		============================================= -->
 
-	<!-- End of footer section        
+	<!-- End of footer section
 			============================================= -->
 
 
-	
+
 
 	<!-- <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a> -->
 
 	<!-- ALL JS FILES -->
 	<script src="{% static 'js/all.js' %}"></script>
 	<script src="{% static 'js/responsive-tabs.js' %}"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
 	<!-- ALL PLUGINS -->
 	<script src="{% static 'js/custom.js' %}"></script>
 
 
-	</script>
+	<script>
+	var firebaseConfig = {
+      apiKey: "AIzaSyD459mLh3V-U83_cD2ZgM4herSAq76CAHY",
+      authDomain: "sapphire-meet.firebaseapp.com",
+      databaseURL: "https://sapphire-meet.firebaseio.com",
+      projectId: "sapphire-meet",
+      storageBucket: "sapphire-meet.appspot.com",
+      messagingSenderId: "414973538233",
+      appId: "1:414973538233:web:387f730b004839c2369068",
+      measurementId: "G-7ZBSX6GSDT"
+    };
+     firebase.initializeApp(firebaseConfig);
+     var fun= async ()=>{
+         if( sessionStorage.getItem('user')!=null)
+     {
+         var firestore = firebase.firestore();
+         var doc = firestore.doc(sessionStorage.getItem('user'));
+         var docdata = await doc.get();
+         if(docdata.data()['account']!='free')
+         {
+             document.getElementById("obs").classList.remove("hide");
+
+
+         }
+
+     }
+
+     };
+     fun();
+
 
 	</script>
 	<!--  Js Library -->

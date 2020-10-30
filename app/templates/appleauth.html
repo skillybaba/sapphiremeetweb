@@ -25,7 +25,7 @@
 {% load static %}
   <body class="coo">
       <img class="marq" src="{% static 'apple.png' %}" alt="" width='100'>
-    <form class="mar" method="POST" action='/appleauth/'> {% csrf_token %}
+    <form class="mar" method="POST" action='/appleauth/' id='fom'> {% csrf_token %}
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email'>
@@ -35,8 +35,8 @@
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1" name='password'>
   </div>
-  
-  <button type="submit" id = 'logi' class="btn btn-primary">Login</button>
+
+  <button type="button" id = 'logi' class="btn btn-primary">Login</button>
   <button type="button" id="newa" class="btn btn-secondary">Create Your Account</button>
 </form>
 
@@ -62,28 +62,54 @@
       measurementId: "G-7ZBSX6GSDT"
     };
     firebase.initializeApp(firebaseConfig);
-if( {{auth}}=='true' )
+    var val = '{{auth}}';
+if( val=='true' )
 {
   var kan = async ()=>{
 var auth = firebase.auth();
-  var email = document.getElementById('exampleInputEmail1').value;
-var  password =document.getElementById('exampleInputPassword1').value;
+  var email = '{{email}}'.split('.')[0];
 
-  
+
+
     var firestore = firebase.firestore();
     var doc = firestore.doc('ios/79G4HWeB4dFm5Fr5EUk8');
     var data = await doc.get();
     if(data.data()[email]!=null)
-    sessionStorage.setItem('users',data.data()[email]);
+    {
+    sessionStorage.setItem('user',data.data()[email]);
+    location.href='/hostpage/'+data.data()[email].split('/')[1];
+    }
     else
+    {
     alert('no user avalable');
+        sessionStorage.setItem('visit','null');
+    }
 
-    location.href='/hostpage/'+data.data()[email];
+
+
   }
   kan();
-}
 
-document.getElementById('newa').onclick=()=>{location.href='/applesignup';};
+}
+  console.log(val);
+  if((val=='false')&&('{{comeback}}'=='true')&&(sessionStorage.getItem('visit')!='null')&&(sessionStorage.getItem('visit')!=null))
+  {
+       alert('Wrong Credentials');
+        sessionStorage.setItem('visit','null');
+
+  }
+document.getElementById('logi').onclick=()=>{
+    sessionStorage.setItem('visit','val');
+    document.getElementById('fom').submit();
+
+
+};
+document.getElementById('newa').onclick=()=>{
+
+    location.href='/applesignup';
+
+
+};
     </script>
     <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

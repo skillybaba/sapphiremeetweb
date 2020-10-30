@@ -11,7 +11,7 @@ def pricing(req):
     return render(req,'pricing.html')
 def channelq(req):
     print(req.POST.get('roomid'))
-    return render(req,'channel.html',{'roomid':str(req.POST.get('roomid','')),'name':str(req.POST.get('name',''))})
+    return render(req,'channel.html',{"date":str(req.POST.get('date','')),'topic':str(req.POST.get('top','')),'roomid':str(req.POST.get('roomid','')),'name':str(req.POST.get('name',''))})
 def enter(req):
     return render(req,'enter.html')
 def notfound(req):
@@ -32,13 +32,16 @@ def authB(req):
         arg['auth']='true'
     else :
         arg['auth']='false'
+        arg['comeback']='true'
+    arg['email']=email
+
     return render(req,'appleauth.html',arg)
 def authC(req):
     username=req.POST.get('username','')
     email = req.POST.get('email','')
     password = req.POST.get('pass','')
     arg={}
-    if username!="" and email !='' and password!='' and not models.user.objects.filter(email=email,name=username,passcode=password):
+    if username!="" and email !='' and password!='' and not models.user.objects.filter(email=email,passcode=password):
         a=models.user()
         a.email=email
         a.name=username
@@ -47,9 +50,10 @@ def authC(req):
         arg['auth']=True
     elif email=='' and password=='' and username=='':
         arg['auth']='fs'
+
     else:
         arg['auth']=False
-    
+
     return render(req,'applesignup.html',arg)
 def commingsoon(req):
     return render(req,'coomingsoon.html')
