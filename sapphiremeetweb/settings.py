@@ -25,7 +25,7 @@ SECRET_KEY = 'u&-)@4n@uq1v#94g(@u4uu9s)jpr*3xuq04mp7v)-#v)!gur_h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sapphiremeet.com','www.sapphiremeet.com','127.0.0.1']
+ALLOWED_HOSTS = ['sapphiremeet.com','www.sapphiremeet.com','127.0.0.1','192.168.43.175','192.168.43.175:8000']
 
 
 # Application definition

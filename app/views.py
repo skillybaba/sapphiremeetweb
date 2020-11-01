@@ -6,7 +6,21 @@ def home(req):
 def about(req):
     return http.HttpResponse('ok')
 def contact(req):
-    return render(req,'contact.html')
+    name=req.POST.get('name','')
+    email=req.POST.get('email','')
+    msg=req.POST.get('message','')
+    subject=req.POST.get('subject','')
+    arg={'val':False}
+    if name!='' and email!='' and msg!='' and subject!='':
+     val=models.msg()
+     val.name=name
+     val.email=email
+     val.msg=msg
+     val.subject=subject
+     val.save()
+     arg['val']=True
+ 
+    return render(req,'contact.html',arg)
 def pricing(req):
     return render(req,'pricing.html')
 def channelq(req):

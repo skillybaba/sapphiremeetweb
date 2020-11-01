@@ -23,4 +23,5 @@ path('termsandcondition/',views.tac,name='tac'),
 path('privacypolicy/',views.privacy,name='privacy'),
 path('steps/',views.steps,name='steps'),
 
+
 ]
