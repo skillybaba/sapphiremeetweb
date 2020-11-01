@@ -65,3 +65,5 @@ def privacy(req):
     return render(req,'privacypolicy.html')
 def tac(req):
     return render(req,'termandcondition.html')
+def steps(req):
+    return render(req,'steps.html')

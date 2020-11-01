@@ -21,5 +21,6 @@ path('obs/',views.obs,name='OBS'),
 path('history/',views.history,name='history'),
 path('termsandcondition/',views.tac,name='tac'),
 path('privacypolicy/',views.privacy,name='privacy'),
+path('steps/',views.steps,name='steps'),
 
 ]
