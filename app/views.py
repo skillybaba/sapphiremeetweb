@@ -61,3 +61,7 @@ def obs(req):
     return render(req,'index12.html')
 def history(req):
     return render(req,'history.html')
+def privacy(req):
+    return render(req,'privacypolicy.html')
+def tac(req):
+    return render(req,'termandcondition.html')
