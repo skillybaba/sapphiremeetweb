@@ -134,7 +134,7 @@ a:hover{
 <body>
 
 
-        <div class="login-container">
+        <div class="login-container" id ='auth1'>
             <!-- <img src="assets/avatar.jpg" alt="avatar image"> -->
             <form action="">
                 <h1>LOGIN</h1>
@@ -188,13 +188,18 @@ a:hover{
 
     firebase.initializeApp(firebaseConfig);
     document.getElementById('auth').onclick= async ()=>{
+        var key= document.getElementById('verif').value;
+        document.getElementById('auth1').innerHTML=`<div class="spinner-border text-success" role="status">
+  <span class="sr-only">Loading...</span>
+</div>`;
         console.log(3);
         var firestore=firebase.firestore();
         var doc = firestore.doc('web/0ysJuZ64RshAHyBnbMqc');
         var docdata= await doc.get();
         console.log(docdata.data());
 
-        var key= document.getElementById('verif').value;
+       
+       
         if((key in docdata.data())&&(docdata.data()[key]!=null))
 
         {
