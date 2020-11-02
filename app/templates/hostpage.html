@@ -124,15 +124,18 @@ input[type="password"]:focus {
       <header>CREATE YOUR  ROOM</header>
       <form method="POST"  id="for" action="{% url 'sapphiremeetapp:channel' %}" > {% csrf_token %}
          <fieldset>
-            <br/>
+            <br>
             <input type='hidden' id='hd' name='top'>
             <input id = 'roomid' type="text" name="username" id="username" placeholder="TOPIC" required >
-            <br/><br/>
+            <br><br>
 
             <input  type="datetime-local" name="date" id="date" placeholder="Enter Date and Time" required >
+<input  type="password" name="passcode" id='passcode' placeholder='Enter the passcode(Optional)'>
     <br>
+     
     <input type="hidden" name="roomid" id='room'>
-            <button  type="button" class="btn btn-primary" onclick="next()">Next</button>
+            <button  type="button" class="btn btn-primary" onclick="next()">Host</button>
+            <button  type="button" class="btn btn-primary" onclick="sce()">Schedule</button>
             <br>
             <br>
           <a href="/price">
@@ -202,6 +205,63 @@ input[type="password"]:focus {
       measurementId: "G-7ZBSX6GSDT"
     };
     firebase.initializeApp(firebaseConfig);
+    function copyToClipboard(text) {
+    var dummy = document.createElement("textarea");
+    // to avoid breaking orgain page when copying more words
+    // cant copy when adding below this code
+    // dummy.style.display = 'none'
+    document.body.appendChild(dummy);
+    //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+    dummy.value = text;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+}
+    var sce = async ()=>{
+      
+       var firestore = firebase.firestore();
+        var doc = firestore.doc('users/'+'{{docid}}');
+        var docdata = await doc.get();
+        var data = docdata.data()['account'];
+        var max;
+        if (data=='free')
+        max=100;
+        else if(data=='pro')
+        max=500;
+        else if(data=='bus')
+        max=1000;
+        else if(data== 'Ent')
+        max=100000;
+        var som=document.getElementById('roomid').value;
+      var roomid=document.getElementById('roomid').value+Math.random().toString();
+
+    document.getElementById('room').value=roomid.split('.')[0]+roomid.split('.')[1];
+    document.getElementById('hd').value=som;
+        var doc2 = firestore.doc('meetings/SjVi5S7Qyj3iTqwFn6Od');
+        roomid=roomid.split('.')[0]+roomid.split('.')[1];
+        var val = await doc.get();
+        var data = val.data()['roomid'];
+        console.log(data);
+        data.push(roomid);
+        await doc.update({
+          'roomid':data}
+        );
+        await doc2.update({
+     [roomid]:{
+       'current':0,'max':max
+     }
+        });
+         copyToClipboard(` Sapphire Meet is inviting you to join the meeting
+         Invite link :- https://sapphiremeet.pythonanywhere.com/enter/
+         Your Room ID :- ${data}
+         Topic:-${som}
+         Date and Time : ${document.getElementById('date').value}
+         passcode : ${document.getElementById('passcode').value}
+         `
+         );
+         alert('Share your link');
+        console.log('done');
+    };
     var next = async ()=>{
         var firestore = firebase.firestore();
         var doc = firestore.doc('users/'+'{{docid}}');

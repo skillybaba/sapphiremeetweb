@@ -25,7 +25,7 @@ def pricing(req):
     return render(req,'pricing.html')
 def channelq(req):
     print(req.POST.get('roomid'))
-    return render(req,'channel.html',{"date":str(req.POST.get('date','random')),'topic':str(req.POST.get('top','random')),'roomid':str(req.POST.get('roomid','')),'name':str(req.POST.get('name',''))})
+    return render(req,'channel.html',{'passcode':str(req.POST.get('passcode','')),"date":str(req.POST.get('date','random')),'topic':str(req.POST.get('top','random')),'roomid':str(req.POST.get('roomid','')),'name':str(req.POST.get('name',''))})
 def enter(req):
     return render(req,'enter.html')
 def notfound(req):
