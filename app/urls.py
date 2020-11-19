@@ -22,5 +22,9 @@ path('history/',views.history,name='history'),
 path('termsandcondition/',views.tac,name='tac'),
 path('privacypolicy/',views.privacy,name='privacy'),
 path('steps/',views.steps,name='steps'),
+<<<<<<< HEAD
+=======
+
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b
 
 ]

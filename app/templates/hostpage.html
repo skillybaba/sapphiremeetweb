@@ -132,7 +132,11 @@ input[type="password"]:focus {
             <input  type="datetime-local" name="date" id="date" placeholder="Enter Date and Time" required >
 <input  type="password" name="passcode" id='passcode' placeholder='Enter the passcode(Optional)'>
     <br>
+<<<<<<< HEAD
 
+=======
+     
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b
     <input type="hidden" name="roomid" id='room'>
             <button  type="button" class="btn btn-primary" onclick="next()">Host</button>
             <button  type="button" class="btn btn-primary" onclick="sce()">Schedule</button>
@@ -149,6 +153,11 @@ input[type="password"]:focus {
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b
 
          </fieldset>
       </form>
@@ -222,8 +231,57 @@ input[type="password"]:focus {
     document.body.removeChild(dummy);
 }
     var sce = async ()=>{
+<<<<<<< HEAD
 
        var firestore = firebase.firestore();
+=======
+      
+       var firestore = firebase.firestore();
+        var doc = firestore.doc('users/'+'{{docid}}');
+        var docdata = await doc.get();
+        var data = docdata.data()['account'];
+        var max;
+        if (data=='free')
+        max=100;
+        else if(data=='pro')
+        max=500;
+        else if(data=='bus')
+        max=1000;
+        else if(data== 'Ent')
+        max=100000;
+        var som=document.getElementById('roomid').value;
+      var roomid=document.getElementById('roomid').value+Math.random().toString();
+
+    document.getElementById('room').value=roomid.split('.')[0]+roomid.split('.')[1];
+    document.getElementById('hd').value=som;
+        var doc2 = firestore.doc('meetings/SjVi5S7Qyj3iTqwFn6Od');
+        roomid=roomid.split('.')[0]+roomid.split('.')[1];
+        var val = await doc.get();
+        var data = val.data()['roomid'];
+        console.log(data);
+        data.push(roomid);
+        await doc.update({
+          'roomid':data}
+        );
+        await doc2.update({
+     [roomid]:{
+       'current':0,'max':max
+     }
+        });
+         copyToClipboard(` Sapphire Meet is inviting you to join the meeting
+         Invite link :- https://sapphiremeet.pythonanywhere.com/enter/
+         Your Room ID :- ${data}
+         Topic:-${som}
+         Date and Time : ${document.getElementById('date').value}
+         passcode : ${document.getElementById('passcode').value}
+         `
+         );
+         alert('Share your link');
+        console.log('done');
+    };
+    var next = async ()=>{
+        var firestore = firebase.firestore();
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b
         var doc = firestore.doc('users/'+'{{docid}}');
         var docdata = await doc.get();
         var data = docdata.data()['account'];

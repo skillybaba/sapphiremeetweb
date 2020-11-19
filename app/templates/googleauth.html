@@ -133,8 +133,14 @@ a:hover{
 </style>
 <body>
 
+<<<<<<< HEAD
         <div class="login-container" id='auth1'>
 
+=======
+
+        <div class="login-container" id ='auth1'>
+            <!-- <img src="assets/avatar.jpg" alt="avatar image"> -->
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b
             <form action="">
                 <h1>LOGIN</h1>
                 <div>
@@ -187,7 +193,11 @@ a:hover{
 
     firebase.initializeApp(firebaseConfig);
     document.getElementById('auth').onclick= async ()=>{
+<<<<<<< HEAD
           var key= document.getElementById('verif').value;
+=======
+        var key= document.getElementById('verif').value;
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b
         document.getElementById('auth1').innerHTML=`<div class="spinner-border text-success" role="status">
   <span class="sr-only">Loading...</span>
 </div>`;
@@ -197,7 +207,12 @@ a:hover{
         var docdata= await doc.get();
         console.log(docdata.data());
 
+<<<<<<< HEAD
 
+=======
+       
+       
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b
         if((key in docdata.data())&&(docdata.data()[key]!=null))
 
         {

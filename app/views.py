@@ -19,7 +19,11 @@ def contact(req):
      val.subject=subject
      val.save()
      arg['val']=True
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b
     return render(req,'contact.html',arg)
 def pricing(req):
     return render(req,'pricing.html')
@@ -80,4 +84,8 @@ def privacy(req):
 def tac(req):
     return render(req,'termandcondition.html')
 def steps(req):
+<<<<<<< HEAD
     return render(req,'steps.html')
+=======
+    return render(req,'steps.html')
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b

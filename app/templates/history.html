@@ -19,13 +19,22 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+<<<<<<< HEAD
 
 
+=======
+     
+  
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b
       </div>
     </div>
   </nav>
     <div class="list-group" id="di">
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b
       </div>
 </body>
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
@@ -51,6 +60,7 @@ var get = async ()=>{
     var docdata = await doc.get();
     var data = docdata.data();
     var string='';
+<<<<<<< HEAD
     var list = data['roomid'].reverse();
 
     for (var i in list)
@@ -63,6 +73,19 @@ var get = async ()=>{
           </div>
           <p class="mb-1">click here to rejoin</p>
 
+=======
+    
+    for (var i in data['roomid'])
+    {
+        
+        string=string+`<button type='button' class="list-group-item list-group-item-action " onclick=val('${data['roomid'][i]}')>
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">${data['roomid'][i]}</h5>
+           
+          </div>
+          <p class="mb-1">click here to rejoin</p>
+          
+>>>>>>> da2d8e06d63c9b73058301b362c537e5cc35b71b
         </a>`;
 
     }
