@@ -17,6 +17,10 @@ path('googleauth/',views.authA,name='authgoogle'),
 path('appleauth/',views.authB,name='authapple'),
 path('applesignup/',views.authC,name='authapplesignup'),
 path('commingsoon/',views.commingsoon,name='comming'),
-path('obs/',views.obs,name='OBS')
+path('obs/',views.obs,name='OBS'),
+path('history/',views.history,name='history'),
+path('termsandcondition/',views.tac,name='tac'),
+path('privacypolicy/',views.privacy,name='privacy'),
+path('steps/',views.steps,name='steps'),
 
 ]

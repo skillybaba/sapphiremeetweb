@@ -39,12 +39,17 @@
 <style>
     body{
         background-color: #fdb813;
-background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%); 
+background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
     }
 </style>
 <body>
-    <!-- Start of contact section        
+    <!-- Start of contact section
 		============================================= -->
+		{% if val == True %}
+		<div class="alert alert-success" role="alert">
+  Submited
+</div>
+{% endif %}
 	<section id="contact" class="contact-section">
 		<div class="container">
 			<div class="row section-content">
@@ -56,18 +61,16 @@ background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
 
 
 				<div class="comment-form">
-					<form id="contact_form" action="#" method="POST" enctype="multipart/form-data">
+					<form id="contact_form" action="/contactus/" method="POST" enctype="multipart/form-data"> {% csrf_token %}
 						<div class="contact-info">
 							<input class="name  mr30" name="name" type="text" placeholder="Name*">
 						</div>
-						<div class="contact-info">
-							<input class="name  mr30" name="name" type="number" placeholder="Mobile number">
-						</div>
+
 						<div class="contact-info">
 							<input class="email" name="email" type="text" placeholder="Email*">
 						</div>
 						<div class="contact-info-1">
-							<input class="name" name="name" type="text" placeholder="Subject">
+							<input class="name" name="subject" type="text" placeholder="Subject">
 						</div>
 						<div class="contact-info">
 							<textarea id="message" name="message" placeholder="Message" rows="7" cols="30"></textarea>
@@ -81,7 +84,7 @@ background-image: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
 			</div><!--  //row-->
 		</div><!--  //container -->
 	</section>
-	<!-- End of contact section        
+	<!-- End of contact section
 		============================================= -->
 
 </body>

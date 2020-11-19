@@ -45,7 +45,7 @@ either users alredy or some other error
           </div>
         </div>
         </div>
-        <button id='sign' class="btn btn-primary">Sign in</button>
+        <button type = 'button' id='sign' class="btn btn-primary">Sign in</button>
       </form>
 </body>
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
@@ -65,12 +65,15 @@ either users alredy or some other error
     };
     firebase.initializeApp(firebaseConfig);
     document.getElementById('sign').onclick = async ()=>{
-       
+try{
+   var email= document.getElementById('inputEmail4').value.split('.')[0];
 var firestore = firebase.firestore();
 var doc = firestore.doc('ios/79G4HWeB4dFm5Fr5EUk8');
 
 var coll=firestore.collection('users');
+
 console.log('ddone');
+
 var ref= await coll.add({
     'name':document.getElementById('username').value,
     'account':'free',
@@ -79,11 +82,16 @@ var ref= await coll.add({
 });
 
 await doc.update({
-    [email]:ref
+    [email]: ref.path,
 });
+console.log('done');
 
-    document.getElementById('signup').submit();
-       
+document.getElementById('signup').submit();
+}
+catch(e)
+{
+    console.log(e);
+}
     };
 </script>
 </html>
