@@ -182,14 +182,10 @@ a:hover{
         var val=sessionStorage.getItem('user');
         console.log(val);
         val=val.split('/');
-        if("{{val}}"=='1')
+       if("{{val}}"=='2')
         {
-                location.href='/chat';
+                location.href='/hostpage/'+val[1];
         }
-         else
-         {
-            location.href='/hostpage/'+val[1];
-         }
     }
 
     firebase.initializeApp(firebaseConfig);
