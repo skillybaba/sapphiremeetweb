@@ -169,7 +169,7 @@
     <script src="{% static 'chatpannel/js/chat.js' %}"></script>
     <script>
         if (sessionStorage.getItem('user') == null) {
-            location.href = '/googleauth/';
+            location.href = '/googleauth/1';
         }
         var check = false;
         (async() => {
@@ -177,7 +177,7 @@
             var user = firestore.doc(sessionStorage.getItem('user'));
             var docdata = await user.get();
             if (docdata.data()['Doc Id'] == null)
-                location.href = '/googleauth/';
+                location.href = '/googleauth/1';
             check = true;
             if (check)
                 main(`${docdata.data()['Doc Id']}`);

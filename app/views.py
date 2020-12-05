@@ -34,8 +34,8 @@ def auth(req):
     return render(req,'authpage.html')
 def hostpage(req,docid):
     return render(req,'hostpage.html',{'docid':docid})
-def authA(req):
-    return render(req,'googleauth.html')
+def authA(req,val):
+    return render(req,'googleauth.html',{'val':val})
 def entering(req):
     return render(req,'index.html')
 def authB(req):
