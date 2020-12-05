@@ -56,9 +56,9 @@
 body{
   display: flex;
   align-items: center;
-  justify-content: center;
+  width : 100%;
   min-height: 100vh;
-  background: #00071C;
+  background: linear-gradient(315deg, #fdb813 0%, #788cb6 74%);
 }
  ul {
    position: relative;
@@ -146,13 +146,22 @@ ul li:nth-child(3):hover span{
 ul li:nth-child(4):hover span{
   background: #FCEB00 !important;
 }
+.cl
+    {
+        margin:5%;
+    }
+    .clks
+    {
+        margin-left:10%;
+    }
 </style>
-<div>
+
+<body >
     <div>
-        <h1> Using your mobile app</h1>
+    <div >
+        <h1 class='clks'> Using your mobile app</h1>
     </div>
 </div>
-<body >
     <!-- <div  id="one12">
     <div class=" input-group input-group-sm mar">
         <div class="input-group-prepend">
@@ -195,7 +204,7 @@ ul li:nth-child(4):hover span{
         </div>
     </div> -->
     {% load static %}
-    <div>
+    <div class='cl'>
 
 
         <ul>
@@ -211,10 +220,7 @@ ul li:nth-child(4):hover span{
               <span > <img src="{% static 'mobile-app.png' %}" width = '70px' alt=""> </span>
             </a>
           </li>
-         <br>
-         <br>
-         <br>
-         <br>
+          <p> Click Here</p>
           <li>
             <a href="/appleauth">
               <span><img src="https://sm.pcmag.com/t/pcmag_in/review/a/apple-ios-/apple-ios-13_ra79.1920.png" width = '70px' alt=""></span>
@@ -224,6 +230,7 @@ ul li:nth-child(4):hover span{
               <span ><img src="https://sm.pcmag.com/t/pcmag_in/review/a/apple-ios-/apple-ios-13_ra79.1920.png" width = '70px' alt=""></span>
             </a>
           </li>
+          <p> Click Here </p>
 
         </ul>
       </div>

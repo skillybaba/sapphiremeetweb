@@ -16,12 +16,23 @@
     }
     .cl
     {
-        background:linear-gradient(to left, #333, #333 50%, #eee 100%);
+        background:#353534;
     }
+
     .dis
     {
         display:none;
     }
+    .center{
+        color:white;
+        margin-left:45%;
+        margin-top:10%;
+    }
+    /*#meet*/
+    /*{*/
+    /*    height:100%;*/
+    /*    width:100%;*/
+    /*}*/
 </style>
 <body class = 'cl'>
 
@@ -34,11 +45,15 @@
 
    <div id="meet">
 
+<div class='center'> Connecting...</div>
+
+ </div>
 
 
    </div>
 
    </span>
+
 </body>
 <script src='https://meet.jit.si/external_api.js'>
 </script>
@@ -49,6 +64,7 @@
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
 
 <script>
+var name;
      var firebaseConfig = {
       apiKey: "AIzaSyD459mLh3V-U83_cD2ZgM4herSAq76CAHY",
       authDomain: "sapphire-meet.firebaseapp.com",
@@ -61,13 +77,21 @@
     };
     // Initialize Firebase
     var kan= async () =>{
+        console.log(window.screen.height-200);
+        console.log('gbvhbv');
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
     var fire = firebase.firestore();
     var db = fire.doc('meetings/SjVi5S7Qyj3iTqwFn6Od');
     var docdata= await db.get();
    var data = docdata.data();
-
+   if(sessionStorage.getItem('user')!=null)
+   {
+   var userdb = fire.doc(sessionStorage.getItem('user'));
+   var data89 = await userdb.get();
+   console.log(data89.data()['username']);
+   name=data89.data()['username'];
+   }
    if("{{roomid}}" in data)
    {
       if (data['{{roomid}}']['current']<data['{{roomid}}']['max'])
@@ -76,19 +100,40 @@
     data1['current']++;
     db.update({"{{roomid}}":data1});
     console.log('loaded');
+    console.log(data['{{roomid}}']['max']);
+    if(data['{{roomid}}']['max']==100)
+    {
+        window.setTimeout(function(){
+            alert('Your meeting room time limit reached we are redirecting you back to the homepage');
+
+
+            location.href='/';
+
+        }, 3600000);
+    }
     const domain = 'h121ran717133kan4xweyzacassacv.sapphiremeet.in';
     const options = {
         roomName: '{{roomid}}',
          userInfo: {
-            displayName: '{{name}}',
+            displayName: '{{name}}'==''?`${data89.data()['username']}`:'{{name}}',
         },
-        width: 1350,
-        height: 600,
-        parentNode: document.querySelector('#meet')
+        width: window.screen.width,
+        height: window.screen.height-160,
+        parentNode: document.querySelector('#meet'),
+         configOverwrite: {
+        disableDeepLinking: true
+      }
     };
-    var firestore = firebase.initializeApp;
+    document.getElementById("meet").innerHTML="";
     const api = new JitsiMeetExternalAPI(domain, options);
+
     console.log('done');
+    if("{{passcode}}"!="")
+    api.addEventListener('participantRoleChanged', function(event) {
+    if (event.role === "moderator") {
+        api.executeCommand('password', '{{passcode}}');
+    }
+});
     api.addEventListener('readyToClose',()=>{
         let data1 = data['{{roomid}}'];
     data1['current']--;
@@ -123,13 +168,14 @@
     document.body.removeChild(dummy);
 }
     document.getElementById("but").onclick=()=>{
-
-
-         copyToClipboard(` Sapphire Meet is inviting you to join the meeting
-         Invite link :- https://sapphiremeet.pythonanywhere.com/enter/
+        var value='{{date}}';
+         copyToClipboard(`${name}  is inviting you to join the meeting
+         Invite link :- https://www.sapphiremeet.com/enter/
          Your Room ID :- {{roomid}}
          Topic:-{{topic}}
-         Date and Time : {{date}}
+         Date  : ${value.split('T')[0]}
+         Time :${value.split("T")[1]}
+         passcode : {{passcode}}
          `
          );
          alert("Link Copied to the clipboard");

@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'u&-)@4n@uq1v#94g(@u4uu9s)jpr*3xuq04mp7v)-#v)!gur_h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['sapphiremeet.com','www.sapphiremeet.com','127.0.0.1','sapphiremeet.pythonanywhere.com','www.sapphiremeet.pythonanywhere.com']
+ALLOWED_HOSTS = ['sapphiremeet.com','www.sapphiremeet.com','127.0.0.1']
 
 
 # Application definition
@@ -120,4 +120,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/sapphiremeet/sapphiremeetweb/static'

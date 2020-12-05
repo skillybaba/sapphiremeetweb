@@ -6,12 +6,26 @@ def home(req):
 def about(req):
     return http.HttpResponse('ok')
 def contact(req):
-    return render(req,'contact.html')
+    name=req.POST.get('name','')
+    email=req.POST.get('email','')
+    msg=req.POST.get('message','')
+    subject=req.POST.get('subject','')
+    arg={'val':False}
+    if name!='' and email!='' and msg!='' and subject!='':
+     val=models.msg()
+     val.name=name
+     val.email=email
+     val.msg=msg
+     val.subject=subject
+     val.save()
+     arg['val']=True
+
+    return render(req,'contact.html',arg)
 def pricing(req):
     return render(req,'pricing.html')
 def channelq(req):
     print(req.POST.get('roomid'))
-    return render(req,'channel.html',{"date":str(req.POST.get('date','')),'topic':str(req.POST.get('top','')),'roomid':str(req.POST.get('roomid','')),'name':str(req.POST.get('name',''))})
+    return render(req,'channel.html',{'passcode':str(req.POST.get('passcode','')),"date":str(req.POST.get('date','random')),'topic':str(req.POST.get('top','random')),'roomid':str(req.POST.get('roomid','')),'name':str(req.POST.get('name',''))})
 def enter(req):
     return render(req,'enter.html')
 def notfound(req):
@@ -56,6 +70,14 @@ def authC(req):
 
     return render(req,'applesignup.html',arg)
 def commingsoon(req):
-    return render(req,'coomingsoon.html')
+    return render(req,'chat.html')
 def obs(req):
     return render(req,'index12.html')
+def history(req):
+    return render(req,'history.html')
+def privacy(req):
+    return render(req,'privacypolicy.html')
+def tac(req):
+    return render(req,'termandcondition.html')
+def steps(req):
+    return render(req,'steps.html')

@@ -38,8 +38,11 @@
 }
 
 body {
-    background: url("https://images.unsplash.com/photo-1485802007047-7774de7208e5?dpr=1&auto=compress,format&fit=crop&w=1800&h") no-repeat center center fixed;
+
+    background:url('https://c1.sfdcstatic.com/content/dam/blogs/ca/Blog%20Posts/shake-up-sales-meeting-og.jpg');
+
     background-size: cover;
+
     font-family: 'Droid Serif', serif;
 }
 
@@ -124,20 +127,27 @@ input[type="password"]:focus {
       <header>CREATE YOUR  ROOM</header>
       <form method="POST"  id="for" action="{% url 'sapphiremeetapp:channel' %}" > {% csrf_token %}
          <fieldset>
-            <br/>
+            <br>
             <input type='hidden' id='hd' name='top'>
             <input id = 'roomid' type="text" name="username" id="username" placeholder="TOPIC" required >
-            <br/><br/>
+            <br><br>
 
             <input  type="datetime-local" name="date" id="date" placeholder="Enter Date and Time" required >
+<input  type="password" name="passcode" id='passcode' placeholder='Enter the passcode(Optional)'>
     <br>
+
     <input type="hidden" name="roomid" id='room'>
-            <button  type="button" class="btn btn-primary" onclick="next()">Next</button>
+            <button  type="button" class="btn btn-primary" onclick="next()">Host</button>
+            <button  type="button" class="btn btn-primary" onclick="sce()">Schedule</button>
             <br>
             <br>
           <a href="/price">
 
             <input type="button" name="sssubmit" value="UPGRADE ACCOUNT">
+          </a>
+           <a href="/history">
+
+            <input type="button" name="sssubmitcds" value="PAST AND SCHEDULE MEET">
           </a>
 
 
@@ -202,8 +212,21 @@ input[type="password"]:focus {
       measurementId: "G-7ZBSX6GSDT"
     };
     firebase.initializeApp(firebaseConfig);
-    var next = async ()=>{
-        var firestore = firebase.firestore();
+    function copyToClipboard(text) {
+    var dummy = document.createElement("textarea");
+    // to avoid breaking orgain page when copying more words
+    // cant copy when adding below this code
+    // dummy.style.display = 'none'
+    document.body.appendChild(dummy);
+    //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+    dummy.value = text;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+}
+    var sce = async ()=>{
+
+       var firestore = firebase.firestore();
         var doc = firestore.doc('users/'+'{{docid}}');
         var docdata = await doc.get();
         var data = docdata.data()['account'];
@@ -222,19 +245,75 @@ input[type="password"]:focus {
     document.getElementById('room').value=roomid.split('.')[0]+roomid.split('.')[1];
     document.getElementById('hd').value=som;
         var doc2 = firestore.doc('meetings/SjVi5S7Qyj3iTqwFn6Od');
-        roomid=roomid.split('.')[0]+roomid.split('.')[1];
+        roomid=roomid.split('.')[0]+roomid.split('.')[1].charAt(0);
+        roomid=roomid.replaceAll(' ','_');
         var val = await doc.get();
         var data = val.data()['roomid'];
         console.log(data);
+        if(data==null)
+        data=[];
         data.push(roomid);
         await doc.update({
           'roomid':data}
         );
         await doc2.update({
      [roomid]:{
+       'current':0,'max':max
+     }
+        });
+         copyToClipboard(`
+         Sapphire Meet is inviting you to join the meeting
+         Invite link :- https://www.sapphiremeet.com/enter/
+         Your Room ID :- ${data[data.length-1]}
+         Topic:-${som}
+         Date: ${document.getElementById('date').value.split('T')[0]}
+         Time: ${document.getElementById('date').value.split('T')[1]}
+         Passcode : ${document.getElementById('passcode').value}
+         `
+         );
+         alert('Meeting is scheduled and link is copied to the clipboard now just share your link with other ');
+        console.log('done');
+    };
+    var next = async ()=>{
+        var firestore = firebase.firestore();
+        var doc = firestore.doc('users/'+'{{docid}}');
+        var docdata = await doc.get();
+        var data = docdata.data()['account'];
+        var max;
+        if (data=='free')
+        max=100;
+        else if(data=='pro')
+        max=500;
+        else if(data=='bus')
+        max=1000;
+        else if(data== 'Ent')
+        max=100000;
+        var som=document.getElementById('roomid').value;
+      var roomid=document.getElementById('roomid').value+Math.random().toString();
+
+    document.getElementById('room').value=roomid.split('.')[0]+roomid.split('.')[1].charAt(0);
+
+    document.getElementById('hd').value=som;
+        var doc2 = firestore.doc('meetings/SjVi5S7Qyj3iTqwFn6Od');
+        roomid=roomid.split('.')[0]+roomid.split('.')[1].charAt(0);
+        roomid=roomid.replaceAll(' ','_');
+        document.getElementById('room').value=roomid;
+        var val = await doc.get();
+        var data34 = val.data()['roomid'];
+        if(data34==null)
+        data34=[];
+
+        console.log(data34);
+        data34.push(roomid);
+        await doc.update({
+          'roomid':data34}
+        );
+        await doc2.update({
+     [roomid]:{
        'current':1,'max':max
      }
         });
+
         console.log('done');
        document.getElementById('for').submit();
 

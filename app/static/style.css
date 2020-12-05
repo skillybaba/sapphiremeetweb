@@ -37,7 +37,7 @@ body {
 	color: #757575;
 	font-family: 'Merriweather Sans', sans-serif;
 	-webkit-font-smoothing: antialiased;
-	
+
 }
 
 
@@ -309,7 +309,7 @@ a img.aligncenter {
 }
 
 .mus{
-	
+
 }
 
 /*------------------------------------------------------------------
@@ -365,13 +365,13 @@ a img.aligncenter {
     position: absolute;
     bottom: 0;
     left: 0;
-	border-radius: 0px 50px 0px 0px; 
+	border-radius: 0px 50px 0px 0px;
     transition: .3s linear;
 }
 .top-navbar .navbar-light .navbar-nav .nav-item.active .nav-link{
 	font-weight: 700;
 }
-.top-navbar .navbar-light .navbar-nav .nav-item{	
+.top-navbar .navbar-light .navbar-nav .nav-item{
 	background: #010101;
 	position: relative;
 	z-index: 0;
@@ -381,7 +381,7 @@ a img.aligncenter {
     height: 100%;
     border-radius: 0px 15px 0px 0px;
 }
-.top-navbar .navbar-nav{	
+.top-navbar .navbar-nav{
 	position: relative;
 	z-index: 0;
 }
@@ -450,7 +450,7 @@ a img.aligncenter {
 }
 
 .item.slider-01{
-	
+
 }
 .home-hero .big-tagline h2{
 	font-size: 48px;
@@ -469,7 +469,7 @@ a img.aligncenter {
 }
 .overlay::before{
 	content: "";
-	background: rgba(0,0,0,0.8);
+	background: url('https://www.aokmarketing.com/wp-content/uploads/2017/01/BlogImage_Chat.jpg');
 	width: 100%;
 	height: 100%;
 	left: 0;
@@ -523,7 +523,7 @@ a img.aligncenter {
 
 .parallax-off::before{
 	content: "";
-	position: absolute; 
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	background: rgba(0,0,0,.6);
@@ -2439,10 +2439,10 @@ body.barber_version .service-wrap:hover .uptop img{
 	top: -100%;
 	left: 0;
 	width: 100%;
-	height: 100%;	
+	height: 100%;
 	transform: none;
 	opacity: 1;
-	transition: all 500ms ease;	
+	transition: all 500ms ease;
 	background: rgba(237,45,70,0.5);
 }
 
