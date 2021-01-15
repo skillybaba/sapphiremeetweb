@@ -81,3 +81,7 @@ def tac(req):
     return render(req,'termandcondition.html')
 def steps(req):
     return render(req,'steps.html')
+
+
+
+
