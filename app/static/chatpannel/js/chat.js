@@ -23,36 +23,36 @@ function updateScroll() {
 }
 var globaladd = () => {};
 var first = async(docid, number) => {
-    console.log(4);
+    // console.log(4);
 
-    var firestore = firebase.firestore();
-    var doc = firestore.doc(docid);
-    var docdata = await doc.get();
-    var finalchat = '';
+    // var firestore = firebase.firestore();
+    // var doc = firestore.doc(docid);
+    // var docdata = await doc.get();
+    // var finalchat = '';
 
-    var data = docdata.data();
-    var message = data[number]['message'];
-    console.log(message);
+    // var data = docdata.data();
+    // var message = data[number]['message'];
+    // console.log(message);
 
-    for (let i in message) {
+    // for (let i in message) {
 
-        if (message[i]['val'][3] == data['name']) {
+    //     if (message[i]['val'][3] == data['name']) {
 
-            finalchat = finalchat + sender(message[i]['val'][0]);
-        } else {
+    //         finalchat = finalchat + sender(message[i]['val'][0]);
+    //     } else {
 
-            finalchat = finalchat + recevermsg(message[i]['val'][0]);
-        }
+    //         finalchat = finalchat + recevermsg(message[i]['val'][0]);
+    //     }
 
 
-    }
+    // }
     document.getElementById('send').removeEventListener('click', globaladd);
     globaladd = () => {
 
         addmessage(docid, number);
     };
     document.getElementById('chatmess').innerHTML = finalchat;
-    chatmessage(docid, number);
+    chatmessage(docid, number,true);
 
     document.getElementById('send').addEventListener('click', globaladd);
 
@@ -111,70 +111,68 @@ Sun
     </div>
 </div>`;
 };
-var chatmessage = async(docid, number) => {
-
+var finalchat = '';
+var chatmessage = async(docid, number,newglobal) => {
+    if(newglobal)
+    finalchat="";
     var firestore = firebase.firestore();
+    var col = firestore.doc(docid).collection(number);
     var doc = firestore.doc(docid);
 
-    doc.onSnapshot((doc) => {
-        var finalchat = '';
-        var data = doc.data();
-        var message = data[number]['message'];
-        console.log(message);
-
-        for (let i in message) {
-
-            if (message[i]['val'][3] == data['name']) {
-
-                finalchat = finalchat + sender(message[i]['val'][0]);
-            } else {
-
-                finalchat = finalchat + recevermsg(message[i]['val'][0]);
-            }
-
-
-        }
+    doc = await doc.get();
+        var data1 = doc.data();
+       
+            
+    col.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach(element => {
+           var data= element.doc.data();
+           if(data['user']['name']==data1['name'])
+           {
+            finalchat=finalchat+sender(data['text']);
+           }
+          else{
+              finalchat=finalchat+recevermsg(data['text']);
+          }
+        });
         document.getElementById('chatmess').innerHTML = finalchat;
         updateScroll();
     });
+        
+       
+
 };
 
 var addmessage = async(docid, number) => {
     var firestore = firebase.firestore();
     var doc = firestore.doc(docid);
-
     var docdata = await doc.get();
     var data = docdata.data();
-    var doc2 = firestore.doc(data[number]['docid']);
-    var docdata2 = await doc2.get();
-    var data2 = docdata2.data();
-    var list = data[number]['message'];
-    var list2 = data2[data['number']]['message'];
-    console.log(number);
-    list.push({
-        'val': [
-            document.getElementById('comment').value,
-            null,
-            null,
-            data['name'],
-            Date.now(),
-
-        ]
+    var col1 = firestore.doc(docid).collection(number);
+    var col2 = firestore.doc(data[number]['docid']).collection(data['number']);
+    col1.add({
+        image:null,
+        text:document.getElementById('comment').value,
+        time:firebase.firestore.Timestamp.fromDate(new Date()),
+        user:{
+            avatar:data['avatar']??null,
+            docid:docid,
+            name:data['name'],
+        },
+        video:null,
     });
-    list2.push({
-        'val': [
-            document.getElementById('comment').value,
-            null,
-            null,
-            data['name'],
-            Date.now()
-
-        ]
+    col2.add({
+        image:null,
+        text:document.getElementById('comment').value,
+        time:firebase.firestore.Timestamp.fromDate(new Date()),
+        user:{
+            avatar:data['avatar']??null,
+            docid:docid,
+            name:data['name'],
+        },
+        video:null,
     });
-    data[number]['message'] = list;
-    data2[data['number']]['message'] = list2;
-    await doc.update(data);
-    await doc2.update(data2);
+   
+ 
     document.getElementById('comment').value = "";
 
     function updateScroll() {
@@ -210,10 +208,12 @@ var user = async(docid) => {
                 (keys[i] != 'callhis') &&
                 (keys[i] != 'downloadablelink') &&
                 (keys[i] != 'status') &&
-                (keys[i] != 'time')) {
-                let doc1 = firestore.doc(data[keys[i]]['docid']);
-                let data1 = await doc1.get();
-                finalchat = finalchat + chattile(data1.data()['name'], docid, keys[i], data[keys[i]]['avtar'] != null ? data[keys[i]]['avtar'] : 'https://static.thenounproject.com/png/503257-200.png');
+                (keys[i] != 'time')&&
+                (data[keys[i]]!=null)
+                ) {
+                
+                
+                finalchat = finalchat + chattile(data[keys[i]]['name'], docid, keys[i], data[keys[i]]['avatar'] != null ?data[keys[i]]['avatar'] : 'https://static.thenounproject.com/png/503257-200.png');
 
             }
         }
@@ -231,13 +231,14 @@ var user = async(docid) => {
                 (keys[i] != 'callhis') &&
                 (keys[i] != 'downloadablelink') &&
                 (keys[i] != 'status') &&
-                (keys[i] != 'time')) {
-                let doc1 = firestore.doc(data[keys[i]]['docid']);
-                let data1 = await doc1.get();
+                (keys[i] != 'time')&&
+                (data[keys[i]]!=null)
+                ) {
+               
                 document.getElementById(keys[i]).addEventListener('click', async() => {
                     await first(docid, keys[i]);
                     document.getElementById('avatar').innerHTML = data[keys[i]]['avtar'] != null ? ` <img src = "${data[keys[i]]['avtar']}" > ` : ` <img src = "https://static.thenounproject.com/png/503257-200.png" > `
-                    document.getElementById('headname').innerHTML = data1.data()['name'];
+                    document.getElementById('headname').innerHTML = data[keys[i]]['name'];
 
                     function updateScroll() {
                         var element = document.getElementById("chatmess");
