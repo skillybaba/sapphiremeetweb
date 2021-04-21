@@ -112,6 +112,7 @@ var name;
         }, 3600000);
     }
     const domain = 'h121ran717133kan4xweyzacassacv.sapphiremeet.in';
+    const domain2 = "meet.jit.si";
     const options = {
         roomName: '{{roomid}}',
          userInfo: {
@@ -125,7 +126,7 @@ var name;
       }
     };
     document.getElementById("meet").innerHTML="";
-    const api = new JitsiMeetExternalAPI(domain, options);
+    const api = new JitsiMeetExternalAPI(domain2, options);
 
     console.log('done');
     if("{{passcode}}"!="")
